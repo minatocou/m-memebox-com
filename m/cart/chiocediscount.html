@@ -1,0 +1,15 @@
+<div class="choice-discount" id="choiceDiscount">
+    <div class="mask" @tap="closeChoiceDiscount"></div>
+    <div class="panel">
+        <div class="top">
+            <span class="close-discount" @tap="closeChoiceDiscount"></span>
+            <p>修改优惠</p>
+        </div>
+        <div class="form">
+            <div class="mui-input-row mui-radio mui-left input-box" v-for="p in preferences">
+                <label>{{p.pname}}</label>
+                <input name="preferences" pname={{p.pname}} pid={{p.pid}} type="radio">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<!--预售列表-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球知名化妆品平台- 美美箱MEMEBOX</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=20174271851"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js" >
+</script>
+<script type="text/javascript">
+    var _maq = _maq || [] ;
+</script>
+    <link rel="stylesheet" href="/styles/app/html/video/detail.css?t=20174271851">
+    <style>
+        .mui-popup-text{
+            max-height:200px;
+            overflow: auto;
+        }
+    </style>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/app/app.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/video/videoDetail.js?t=20174281123"></script>
+
+</head>
+<body>
+<div id="app">
+    <header v-if="!isApp()" v-show="!isApp()" style="display: none" class="mui-bar mui-bar-nav memebox-header">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 id="title" class="mui-title">{{title}}</h1>
+        <a href="../home/home.html" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+    </header>
+    <div style="display: none" v-show="init" class="mui-content pre-container videoContainer">
+        <div class="videoCon" :style="{paddingTop:videoHeight}">
+            <div class="videoBox" id="videoBox" :style="{height:videoHeight}">
+                <video id="myVideo" controls="false" @tap="changeControlBar" v-on:ended="endPlay" v-on:stalled="noNetTip" v-on:progress="initBuffer" preload="metadata" v-show="!isShowPreview" width="100%" :src="detailData.video.videoUrl"></video>
+                <img class="videoImg" v-show="isShowPreview" :src="detailData.video.videoPreviewImage">
+                <div class="controllerBar" v-show="isShowControlBar">
+                    <div class="controlBtn" @tap="changeVideo" :class="isPlay?'play':'pause'"></div>
+                    <div class="progress" id="progress">
+                        <span class="currentTime">{{videoCurrentTime}}</span>
+                        <div id="proBar" class="progressBar">
+                            <div class="playPro" :style="{width:playProgress}"></div>
+                            <div class="bufferPro" :style="{width:bufferProgress}"></div>
+                            <div class="dragBtn" v-on:touchstart="dragProBarStart($event)" v-on:touchmove="dragProBar($event)" v-on:touchend="dragProBarEnd($event)" :style="{left:playProgress}"></div>
+                        </div>
+                        <span class="totalTime">{{videoTotalTime}}</span>
+                    </div>
+                </div>
+                <div class="coverController coverPause" @tap="showVideo" v-show="!isPlay"></div>
+            </div>
+            <div class="videoInfo">
+                <h2 class="ov">{{detailData.video.videoTitle}}</h2>
+                <p class="">{{detailData.video.videoDesc}}</p>
+            </div>
+        </div>
+        <div class="pro-list">
+            <h2>相关商品</h2>
+            <ul>
+                <li v-for="item in detailData.productList" @tap="$parent.go('/m/productDetails/productDetails.html#'+item.productId)">
+                    <div class="proImg">
+                        <img :src="item.imgUrl">
+                    </div>
+
+                    <div class="proDetail">
+                        <h3 class="name ov2">[{{item.brandName}}]{{item.name}}</h3>
+                        <div class="box ov">
+                            <template v-if="item.productLabels.length>0">
+                                <span class="label" v-for="label in item.productLabels" :style="{color:label.color}">
+                                       {{label.text}}
+                                        <span :style="{background:label.color}"></span>
+                                </span>
+                            </template>
+                        </div>
+                        <p class="price">¥{{item.price}} <del>¥{{item.originPrice}}</del></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!--购物车-->
+        <div class="shopping-cart">
+            <a href="{{page}}/cart/cart.html"></a>
+            <span class="number" v-if="cartNumber!=0">{{cartNumber}}</span>
+        </div>
+    </div>
+
+</div>
+
+<script src="/scripts/app/appsdk/app.js?t=20174271851"></script>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+
+<script>
+    require('/modules/video/videoDetail');
+</script>
+</body>
+</html>

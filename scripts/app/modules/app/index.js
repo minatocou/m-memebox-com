@@ -1,0 +1,1 @@
+define("/modules/app/index",["require","exports","module","/modules/vue/vue","/modules/vue/vue-common","/modules/app/app"],function(e){var u=e("/modules/vue/vue"),o=e("/modules/vue/vue-common"),m=e("/modules/app/app");vue=new u({mixins:[o,m],el:"html",data:{},methods:{},ready:function(){var e=this;e.getAppUrl()}})});

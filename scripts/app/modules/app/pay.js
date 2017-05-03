@@ -1,0 +1,1 @@
+define("/modules/app/pay",function(a,p,n){n.exports={methods:{app_pay:function(a){window.callByJS&&window.callByJS({domain:"pay",action:"dopay",param:a,callback:function(a){vue.appPayCall(a)}})}}}});

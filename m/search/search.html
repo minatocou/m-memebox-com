@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html :class="noSearch&&'noSearch'">
+<head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球知名化妆品平台- 美美箱MEMEBOX</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=20174271851"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js" >
+</script>
+<script type="text/javascript">
+    var _maq = _maq || [] ;
+</script>
+    <link href="/styles/app/html/search/style.css?t=20174271851" rel="stylesheet"/>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/search/search.js?t=20174281123"></script>
+
+</head>
+<body id="app" class="search-page" style="display: none" v-show="init">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" @tap=goBack></a>
+    <div id="search" name="search">
+        <span class="search-icon" @tap="submit"></span>
+        <validator name="validation">
+            <form novalidate name="searchForm" @submit="submit">
+                <input id="searchInput" type="search" name="searchInput" @change="submit" v-model="searchText"
+                       v-validate:searchInput="{required:{rule: true,message:'请输入搜索内容'}}">
+            </form>
+        </validator>
+        <span class="close-icon" v-show="searchText" @tap="inputEmpty"></span>
+    </div>
+</header>
+<div class="mui-content">
+    <!--搜索类型-->
+    <ul id="list" class="mui-table-view mui-table-view-chevron"  v-show="showResult==false">
+    <search-type v-for="searchTypes in dataSearchType"
+                 url="../productClassify/productClassify.html#"
+                 :first-level-name="searchTypes['name']"
+                 :second-level="searchTypes['subCate']"
+                 :first-id="$key"
+    ></search-type>
+</ul>
+    <!--搜索结果页-->
+    <div class="brandWrap" v-show="showBrandCard">
+    <div class="brandWrap-border">
+        <div class="brandHaed">
+            <a class="brandHaed-link" href="/m/brand/home.html?id={{brandCardData.brandId}}" @tap="enterBrand">
+                <span class="brandHead-img">
+                    <img :src="brandCardData.logo">
+                </span>
+                <div class="brandHead-title ov">{{brandCardData.name}}
+                    <label class="brandHead-label">自有品牌</label>
+                </div>
+            </a>
+        </div>
+        <div class="brandContent">
+            <div class="brandContent-bg">
+                <a href="/m/brand/home.html?id={{brandCardData.brandId}}" @tap="enterBrand">
+                    <img :src="brandCardData.cardImg">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="mui-table-view mui-table-view-chevron" id="sort" v-show="showSearch==true">
+    <li class="sort-method">
+        <span class="sort-title" :class="position==true ? 'sort-title-active' : ''" @tap="positionSort">综合</span>
+        <span class="sort-title sort-sales" :class=" sale ? 'sort-title-active' : ''" @tap="salesSort">销量</span>
+        <div class="sort-price">
+            <span>
+                <span
+                        class="sort-choice"
+                        :class=" price ? 'sort-title-active' : ''"
+                        @tap="priceChange">价格</span>
+                <span class="sort-icon">
+                    <span v-bind:class="{'sort-active':price=='asc'}"></span>
+                    <span v-bind:class="{'sort-active':price=='desc'}"></span>
+                </span>
+            </span>
+        </div>
+        <div class="sort-title sort-filter" :class="{'sort-title-active':isShowFilter}" @tap="showFilter()">
+            <span class="sort-filter-title">筛选</span><span class="filter-icon"></span>
+        </div>
+    </li>
+</ul>
+
+<div id="filter" class="mui-table-view mui-table-view-chevron"  v-show="isShowFilter">
+    <div class="filter-con">
+        <div class="filterSelected">
+            <div v-show="filterOption.data.length>0" class="selected-box swiper-container">
+                <div class="selected swiper-wrapper">
+                    <span class="swiper-slide" v-for="option in filterOption.data">{{option.v}}
+                        <span class="closeIcon"  @tap="removeOption(option.k,option.v)"></span>
+                    </span>
+                </div>
+            </div>
+            <div v-show="filterOption.data.length==0">
+                未筛选内容
+            </div>
+        </div>
+        <div class="option-box">
+            <ul class="first-level">
+                <li v-for="(k,v) in tab|orderBy '$key'" :class="{active:v.show,selected:filterOption[k].length>0}" @tap="changeTab(k)">{{v.text}}</li>
+            </ul>
+            <div class="second-level-con">
+                <div class="second-level" v-for="(k,v) in filter|orderBy '$key'" v-show="tab[k].show" :id="k">
+                    <template v-if="k=='brand'">
+                        <div class="title">所有品牌</div>
+                        <div v-for="option in brands" :data-group="option.letter">
+                            <div class="group-head" :class="option.letter">{{option.letter}}</div>
+                            <ul>
+                                <li v-for="item in option.data" @tap="selectOption(k,item,$event)" :data-value="item">
+                                    {{item}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="indexList">
+                            <ol>
+                                <li  v-for="option in letters" @tap="scrollToGroup(option)">{{option}}</li>
+                            </ol>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <ul>
+                            <li v-for="item in v" @tap="selectOption(k,item.name,$event)" :data-value="item.name">{{item.name}}</li>
+                        </ul>
+                    </template>
+                </div>
+            </div>
+        </div>
+        <div class="control">
+            <span class="clear" @tap="clearFilter()">清除选项</span>
+            <span class="sure" @tap="sureFilter()">确定</span>
+        </div>
+    </div>
+</div>
+
+<div id="pullrefresh" class="mui-content mui-scroll-wrapper" :class="{topBrandWrap: showBrandCard}" v-if="showResult==true">
+    <div class="mui-scroll">
+        {{dataProductList.data.length}}
+        <ul class="mui-table-view mui-table-view-chevron">
+            <product-list v-for="productList in dataProductList"
+                          url="../productDetails/productDetails.html#"
+                          :product-id="productList['productId']"
+                          :description="(productList['brandName']||productList['brand'])+productList['name']"
+                          :img="productList['imgUrl'] || productList['imgPc']"
+                          :price="productList['price']"
+                          :origin-price="productList['originPrice']"
+                          :icon="productList"
+                          :stock-status="productList['stockStatus']"
+            ></product-list>
+        </ul>
+    </div>
+</div>
+<div class="no-search" align="center" v-show="noSearch==true">
+    <img src="/images/app/search/include/no.png?t=20174271851" alt="没有合适的商品">
+    <p>没有合适的商品,换个别的词试试吧</p>
+</div>
+
+    <!--购物车-->
+    <div class="shopping-cart" v-if="showResult==true">
+        <a href="../cart/cart.html"></a>
+        <span class="number" v-if="cartNumber!=0">{{cartNumber}}</span>
+    </div>
+</div>
+<script src="/scripts/app/plugins/swiper/swiper-3.3.1.min.js?t=20174271851"></script>
+<script src="/scripts/app/appsdk/app.js?t=20174271851"></script>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script>
+    /*  *
+     *          ┏┓　　　┏┓
+     *        ┏┛┻━━━┛┻┓
+     *        ┃　　　　　　　┃ 　
+     *        ┃　　　━　　　┃
+     *        ┃　┳┛　┗┳　┃
+     *        ┃　　　　　　　┃
+     *        ┃　　　┻　　　┃
+     *        ┃　　　　　　　┃
+     *        ┗━┓　　　┏━┛
+     *        　　┃　　　┃神兽保佑
+     *        　　┃　　　┃代码无BUG！
+     *        　　┃　　　┗━━━┓
+     *        　　┃　　　　　　　┣┓
+     *        　　┃　　　　　　　┏┛
+     *        　　┗┓┓┏━┳┓┏┛
+     *        　　　┃┫┫　┃┫┫
+     *        　　　┗┻┛　┗┻┛
+     *　　　
+     */
+    var pageStart=new Date().getTime();
+
+    window.onerror=function (sMsg,sUrl,sLine) {
+        _maq.push(["_trackErrorEvent",{tag : location.href , level :"error" ,code :"30500",msg :JSON.stringify({msg:sMsg,line:sLine,sUrl:sUrl})}] )
+    }
+</script>
+<script src="/scripts/app/monitor/tingyun.js?t=20174271851"></script>
+<!--<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>-->
+<!-- Google Tag Manager -->
+<!--<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NGHG3H"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>-->
+<!--<script src="http://pkg-cn1001.memebox.com/static/production/ma.min.js"></script>-->
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js"></script>-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+
+
+
+(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-NGHG3H');
+
+ga('create', 'UA-70353868-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+<!-- End Google Tag Manager -->
+
+</body>
+<script>
+    require('/modules/search/search');
+</script>
+
+</html>

@@ -1,0 +1,155 @@
+<!--预售列表-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球知名化妆品平台- 美美箱MEMEBOX</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=20174271851"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js" >
+</script>
+<script type="text/javascript">
+    var _maq = _maq || [] ;
+</script>
+    <link rel="stylesheet" href="/styles/app/html/special/presale/list.css?t=20174271851">
+    <style>
+        .mui-popup-text{
+            max-height:200px;
+            overflow: auto;
+        }
+    </style>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/app/app.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/special/presale/list.js?t=20174281123"></script>
+
+</head>
+<body>
+<div id="app">
+    <header v-if="!isApp()" v-show="!isApp()" style="display: none" class="mui-bar mui-bar-nav memebox-header">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 id="title" class="mui-title">活动详情</h1>
+        <a href="../../home/home.html" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+    </header>
+    <div style="display: none" v-show="init" class="mui-content pre-container">
+        <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <div v-if="banner" class="banner">
+                    <img :src="banner">
+                </div>
+                <div class="time-con" v-bind:class="{'pre-over':startedFlag=='2'}">
+                    <div v-if="startedFlag!='2'" class="time-box">
+                        距离预售<span class="colorfff91a">{{countdownText}}</span>还有
+                        <div class="time">
+                            <span class="day">
+                                <template v-if="time.day<10">
+                                    <span>0</span>
+                                    <span>{{time.day}}</span>
+                                </template>
+                                <template v-else>
+                                    <span>{{time.day[0]}}</span>
+                                    <span>{{time.day[1]}}</span>
+                                </template>天
+                            </span>
+                            <span class="hour">
+                                <span>
+                                    {{time.hour[0]}}
+                                </span>
+                                <span>
+                                    {{time.hour[1]}}
+                                </span> 时
+                            </span>
+                            <span class="minute">
+                                <span>{{time.minute[0]}}</span>
+                                <span>{{time.minute[1]}}</span> 分
+                            </span>
+                            <span class="second">
+                                <span>{{time.second[0]}}</span>
+                                <span>{{time.second[1]}}</span> 秒
+                            </span>
+                        </div>
+                    </div>
+                    <div v-else class="preover">
+                        预售已结束
+                    </div>
+
+                    <a @tap="showPresaleRule()">查看预售须知 ></a>
+                </div>
+                <ul class="mui-table-view mui-table-view-chevron pre-list" v-bind:class="{'prelist-over':startedFlag=='2','prelist-nostart':startedFlag=='0'}">
+                    <template v-for="list in dataProductList">
+                        <li class=" pre-item" v-for="item in list"
+                            v-bind:class="{'over':item.stockStatus!=1 && startedFlag!='0'}">
+                            <a @tap="goDetail(item)"
+                               :href="getUrl(item)"
+                               >
+                                <div class="product-img">
+                                    <img :src="item.imgUrl">
+
+                                    <div v-if="startedFlag=='0'" class="nostart">未开始</div>
+                                    <template v-else>
+                                        <div v-if="item.stockStatus!=1" class="stock-out">已抢光</div>
+                                    </template>
+
+                                </div>
+                                <div class="product-info">
+                                    <h2 class="ov2">[{{item.brandName}}] {{item.name}}</h2>
+                                    <div class="product-priceBox">
+                                        <div class="double11-price">
+                                            <span class="double11-tag"><img :src="festivalImg"></span>
+                                            <span class="ls-double11-price">￥{{parseInt(item.specialPrice)}}</span>
+                                        </div>
+                                        <div class="pre-price">
+                                            <span class="pre-tag">预售价</span>
+                                            <div>
+                                                <span class="ls-current-price">￥{{parseInt(item.prePrice)}}</span>
+                                                <del class="ls-original-price">￥{{parseInt(item.originPrice)}}</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="product-foot">预付定金￥{{parseInt(item.deposit)}}</span>
+                                </div>
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--老版本-->
+<div class="mui-popup-backdrop mui-active" style="display: none" v-show="isApp()&&(iosVer()&&iosVer()<400||androidVer()&&androidVer()<400)"></div>
+<div class="mui-popup mui-popup-in" style="display: none"  v-show="isApp()&&(iosVer()&&iosVer()<400||androidVer()&&androidVer()<400)">
+    <div class="mui-popup-inner">
+        <div class="mui-popup-title"></div>
+        <div class="mui-popup-text">抱歉，老版本用户不能参加我们的超优惠预售活动，赶紧去应用市场下载最新MEMEBOX吧！</div>
+    </div>
+    <div class="mui-popup-buttons" @tap="app_back"><span class="mui-popup-button mui-popup-button-bold">知道啦</span></div>
+</div>
+<script src="/scripts/app/appsdk/app.js?t=20174271851"></script>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script>
+    require('/modules/special/presale/list');
+</script>
+</body>
+</html>

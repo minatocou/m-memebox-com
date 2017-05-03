@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球知名化妆品平台- 美美箱MEMEBOX</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=20174271851"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js" >
+</script>
+<script type="text/javascript">
+    var _maq = _maq || [] ;
+</script>
+    <link rel="stylesheet" href="/styles/app/html/live/share.css?t=20174271851">
+    <style>
+        .mui-popup-text{
+            max-height:200px;
+            overflow: auto;
+        }
+    </style>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/app/app.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/live/share.js?t=20174281123"></script>
+
+</head>
+<body>
+<div id="app">
+    <header v-if="!isApp()" v-show="!isApp()" style="display: none" class="mui-bar mui-bar-nav memebox-header">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 id="title" class="mui-title">{{title}}</h1>
+        <a href="../home/home.html" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+    </header>
+    <!--<div style="display: none" v-show="init" class="mui-content pre-container liveContainer" :style="{backgroundImage: 'url(' + liveData.bg_url + ')'}">-->
+    <div style="display: none" v-show="init" class="mui-content pre-container liveContainer">
+        <div class="liveBody">
+            <div class="live-header">
+                <div class="avatar"><img :src="liveData.anchorAvatar" alt=""></div>
+                <div class="info">
+                    <p class="roomTitle ov">{{liveData.liveTitle}}</p>
+                    <p class="hostName ov">{{liveData.anchorName}}</p>
+                </div>
+            </div>
+            <div class="desc">
+                <div class="descTitle">直播简介</div>
+                <div class="descInfo ov4">{{liveData.liveInfo}}</div>
+            </div>
+            <div class="liveTime">
+                <div class="status">{{status(liveData.status)}}</div>
+                <div class="time">直播时间 <span>{{liveData.startTime}}</span></div>
+            </div>
+            <!--href="{{appUrl}}"-->
+            <a class="goApp"  :href=appUrl @tap="down" target="_blank">
+            <!--<a class="goApp" @tap="down" target="_blank">-->
+                <button>立即跑去围观</button>
+            </a>
+        </div>
+        <div class="bg-blur" :style="{backgroundImage: 'url(' + liveData.bgUrl + ')'}"></div>
+        <div class="cover"></div>
+    </div>
+</div>
+
+<script src="/scripts/app/appsdk/app.js?t=20174271851"></script>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script>
+    require('/modules/live/share');
+</script>
+</body>
+</html>

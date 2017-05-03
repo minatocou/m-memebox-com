@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
+
+</head>
+<body>
+<input placeholder="这里填地址" id="inputUrl"><input id="inputClass" placeholder="这里填class,可不添">
+
+<input type="button"
+       id="urlbtn"
+       value="抓取">
+<br>
+
+输入
+<textarea id="textInput" style="width: 100%;height: 200px"></textarea>
+<input type="button" id="sub" value="生成"><br>
+输出<br>
+<textarea id="textOut" style="width: 100%;height: 200px"></textarea>
+<div id="cc"></div>
+<script src="/scripts/app/vendor/jquery.js"></script>
+<script>
+    $(function () {
+        var a = {
+            "0": "http://memebox-avatar-dev.s3-website.cn-north-1.amazonaws.com.cn/avatar/2016/9/2/22a27055-6e9f-4498-b04a-98734e46457a.jpeg",
+            "1": "http://memebox-avatar-dev.s3-website.cn-north-1.amazonaws.com.cn/avatar/2016/9/2/7c7dadaa-d7e6-490d-96eb-94916f304d5e.jpeg",
+            "2": "http://memebox-avatar-dev.s3-website.cn-north-1.amazonaws.com.cn/avatar/2016/9/2/b9856143-a6ee-4026-bd8d-99484c127e57.jpeg",
+            "3": "http://memebox-avatar-dev.s3-website.cn-north-1.amazonaws.com.cn/avatar/2016/9/2/a0f9b648-9227-47c0-b7b6-013c0182a832.jpeg",
+            "4": "http://memebox-avatar-dev.s3-website.cn-north-1.amazonaws.com.cn/avatar/2016/9/2/0599778a-813a-4534-83ff-289bc09ff619.jpeg",
+            "5": "http://memebox-avatar-dev.s3-website.cn-north-1.amazonaws.com.cn/avatar/2016/9/2/3476a944-b664-4d1b-987a-413ab8ddc36e.jpeg",
+            "6": "http://memebox-avatar-dev.s3-website.cn-north-1.amazonaws.com.cn/avatar/2016/9/2/04773b02-9b3b-41b7-b2db-b10df60e9e84.jpeg"
+        }
+        $('#inputUrl').val(localStorage.inputUrl || '');
+        $('#inputClass').val(localStorage.inputClass || '');
+        $('#urlbtn').click(function () {
+            localStorage.inputUrl = $('#inputUrl').val();
+            localStorage.inputClass = $('#inputClass').val();
+            $.ajax({
+                url: $('#inputUrl').val(),
+                crossDomain: true,
+                type: 'get',
+                success: function (data, status, xhr) {
+                    var ic = $('#inputClass').val()
+                    var el = $(data);
+                    console.log(ic.length);
+                    if (ic.length > 0) {
+                        el = $(data).find(ic)
+                    }
+                    var ccc = $('#cc');
+                    ccc.append(el);
+                    setTimeout(function () {
+                        console.log(ccc.find('img[usemap]').length)
+                    }, 1000)
+                    var pre = $('<div id="out" style="position: relative"></div>');
+                    var imgNum = ccc.find('img[usemap]').length;
+                    console.log(ccc.html())
+                    ccc.find('img[usemap]').each(function () {
+                        console.log(imgNum, 2)
+                        $(this).load(function () {
+
+                            if (!--imgNum) {
+                                console.log(ccc.find('img[usemap]').length, 2);
+                                for (var j = 0; j < ccc.find('img[usemap]').length; j++) {
+                                    console.log(222);
+                                    var img = ccc.find('img[usemap]').eq(j);
+                                    var map = ccc.find('map').eq(j);
+                                    var div = $('<div style="position: relative"></div>');
+                                    var area = map.find('area');
+                                    var imgPath = img.attr('src');
+                                    console.log(a[j], j);
+                                    div.append('<img style="max-width: 100%" src="' + a[j] + '" />');
+                                    area.each(function () {
+                                        var adds = $(this).attr('coords').split(',');
+                                        var href = $(this).attr('href');
+                                        console.log(img.width())
+                                        var left = adds[0] / img.width() * 100;
+                                        var top = adds[1] / img.height() * 100;
+                                        var w = (adds[2] - adds[0]) / img.width() * 100;
+                                        var h = (adds[3] - adds[1]) / img.height() * 100;
+                                        var a = $('<a>');
+                                        a.attr('href', href)
+                                        a.css({
+                                            top: top.toFixed(2) + '%',
+                                            left: left.toFixed(2) + '%',
+                                            width: w.toFixed(2) + '%',
+                                            height: h.toFixed(2) + '%',
+                                            position: 'absolute',
+                                            zIndex: 100
+                                        })
+                                        div.append(a);
+                                    })
+                                    pre.append(div);
+                                    //$('body').append(pre);
+                                    $('#textOut').text(pre.html())
+                                }
+
+                            }
+                        })
+                    })
+                }
+            })
+        })
+
+        $('#sub').click(function () {
+            var text = $('#textInput').val();
+            console.log(text)
+        })
+    })
+</script>
+</body>
+</html>

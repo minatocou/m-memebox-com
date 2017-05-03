@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的会员等级</title>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球知名化妆品平台- 美美箱MEMEBOX</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=20174271851"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js" >
+</script>
+<script type="text/javascript">
+    var _maq = _maq || [] ;
+</script>
+    <link rel="stylesheet" href="/styles/app/html/my/vip.css?t=20174271851">
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/app/app.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/my/vip.js?t=20174281123"></script>
+
+</head>
+<body >
+<header class="mui-bar mui-bar-nav memebox-header" style="display: none" v-show="!isApp()">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">会员等级</h1>
+    <a @tap="goHome" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+</header>
+<div class="mask" v-show="showMask" style="display: none" >
+    <div class="mask-bg" @touchstart="mask"></div>
+    <div class="show-rule">
+        <div class="rule-title">
+            <h4>特别说明</h4>
+            <span @touchstart="mask"></span>
+        </div>
+        <div class="text">
+            <p>1.降级说明：每个级别蜜米在有效期结束后，如购买数量和金额达不到该级别要求，将顺次下调一个会员级别。同时按照下调日更新会员级别有效期。</p>
+            <p>2.如发现恶意用户，MEMEBOX有权收回蜜豆及撤销会员等级。</p>
+            <p>3.MEMEBOX保留法律范围内允许的对会员体系的最终解释权。</p>
+        </div>
+    </div>
+</div>
+<div class="mui-content  vip" style="display: none" v-show="init">
+    <div class="vip-info">
+        <div class="vip-level">
+            <div class="progress-bar">
+                <span class="level-logo prev-level left-45" v-show="vipData.currentGradeId!=0">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 47.4 38.4" style="enable-background:new 0 0 47.4 38.4;" xml:space="preserve">
+                            <path class="st0" d="M41,0H30.2L14,24.4V0H0.5l5.4,2.7V38h5.4L35.6,2.7L41,0z"/>
+                            <text transform="matrix(0.9781 0 -0.2162 1.0173 25.7826 37.0002)" >{{vipData.currentGradeId-1}}</text>
+                        </svg>
+                </span>
+                <span class="level-logo next-level right-45"  v-show="vipData.currentGradeId+1!=vipData.details.length">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 47.4 38.4" style="enable-background:new 0 0 47.4 38.4;" xml:space="preserve">
+                            <path class="st0" d="M41,0H30.2L14,24.4V0H0.5l5.4,2.7V38h5.4L35.6,2.7L41,0z"/>
+                            <text transform="matrix(0.9781 0 -0.2162 1.0173 25.7826 37.0002)" >{{vipData.currentGradeId+1}}</text>
+                        </svg>
+                </span>
+            </div>
+            <span class="vip-img">
+                <div  v-if="vipData.avatarStatus==3">?</div>
+                <img :src="vipData.avatar" alt="用户头像" width="100%" height="100%">
+                <span class="level-logo cur-level">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 47.4 38.4" style="enable-background:new 0 0 47.4 38.4;" xml:space="preserve">
+                            <path class="st0" d="M41,0H30.2L14,24.4V0H0.5l5.4,2.7V38h5.4L35.6,2.7L41,0z"/>
+                            <text transform="matrix(0.9781 0 -0.2162 1.0173 25.7826 37.0002)" >{{vipData.currentGradeId}}</text>
+                        </svg>
+                </span>
+            </span>
+        </div>
+        <div align="center" class="vip-level-name">
+            <img :src=vipData.vipImg alt="memebox会员等级">
+        </div>
+        <!--<div v-if="vipData.isUpgrade==0&&vipData.currentGradeId!='7'">-->
+            <!--<p v-if="vipData.currentGradeId!='0'">-->
+                <!--{{(vipData.daysLeft==''||vipData.daysLeft=='1')?'今':vipData.daysLeft}}天内再购买-->
+                <!--<span>{{vipData.ordersLeft==0?'任意':vipData.ordersLeft}}</span>-->
+                <!--笔订单{{vipData.amountLeft==0?'任意金额的订单':'且订单实付金额不低于'+vipData.amountLeft+'元'}}，即可升级到{{vipData.details[6-vipData.currentGradeId].chineseGrade}}！-->
+            <!--</p>-->
+            <!--<p v-else>-->
+                <!--购买任意商品即可升级到铜牌蜜米！-->
+            <!--</p>-->
+        <!--</div>-->
+        <!--<div v-else>-->
+            <!--<div v-if="vipData.currentGradeId=='7'&&vipData.daysLeft=='0'&&vipData.ordersLeft=='0'&&vipData.amountLeft=='0'">-->
+                <!--<p>-->
+                    <!--恭喜，您当前已达到保持VVIP蜜米条件，有效期结束将自动为您保级-->
+                <!--</p>-->
+            <!--</div>-->
+            <!--<div v-else>-->
+                <!--<p v-if="vipData.currentGradeId=='7'">-->
+                    <!--{{(vipData.daysLeft==''||vipData.daysLeft=='1')?'今':vipData.daysLeft}}天内再购买-->
+                    <!--<span>{{vipData.ordersLeft==0?'任意':vipData.ordersLeft}}</span>-->
+                    <!--笔订单{{vipData.amountLeft==0?'任意金额的订单':'且订单实付金额不低于'+vipData.amountLeft+'元'}}，即可保持VVIP蜜米！-->
+                <!--</p>-->
+                <!--<p v-else>-->
+                    <!--恭喜，您当前已达到升级{{vipData.details[8-vipData.nextGradeId].chineseGrade}}条件，明天将自动为您升级！-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <div class="vip-level-introduce">
+        <div class="vip-level-main">
+            <div class="vip-title">
+                <img :src=vipData.vImg alt="memebox会员等级" class="big-vip-level">
+                <div class="vip-title-text">
+                    <div>
+                        <h4>{{vipData.chineseGrade}}</h4>
+                        <span>({{vipDetails.fromDate}}—{{vipDetails.toDate||'&nbsp;&nbsp;&nbsp;&nbsp;'}})</span>
+                        <!--<span v-show="vipDetails.toDate!=''&&vipDetails.fromDate!=''">({{vipDetails.fromDate}}-{{vipDetails.toDate}})</span>-->
+                        <img src="/images/app/my/include/vip-title-icon.png?t=20174271851" alt="会员等级" @tap="mask">
+                    </div>
+                    <template v-if="vipData.isUpgrade==0&&vipData.currentGradeId!='7'">
+                        <p v-if="vipData.currentGradeId!='0'">
+                            {{vipDetails.fromDate}}—{{vipDetails.toDate||'&nbsp;&nbsp;&nbsp;&nbsp;'}}内再购买
+                            <span style="color:#ff5073">{{vipData.ordersLeft==0?'任意':vipData.ordersLeft}}</span>
+                            笔订单{{vipData.amountLeft==0?'任意金额的订单':'且订单实付金额不低于'+vipData.amountLeft+'元'}}，即可升级到{{vipData.details[6-vipData.currentGradeId].chineseGrade}}！
+                        </p>
+                        <p v-else>
+                            购买任意商品即可升级到铜牌蜜米！
+                        </p>
+                    </template>
+                    <template v-else>
+                        <template v-if="vipData.currentGradeId=='7'&&vipData.daysLeft=='0'&&vipData.ordersLeft=='0'&&vipData.amountLeft=='0'">
+                            <p>
+                                恭喜，您当前已达到保持VVIP蜜米条件，有效期结束将自动为您保级
+                            </p>
+                        </template>
+                        <template v-else>
+                            <p v-if="vipData.currentGradeId=='7'">
+                                {{(vipData.daysLeft==''||vipData.daysLeft=='1')?'今':vipData.daysLeft}}天内再购买
+                                <span style="color:#ff5073">{{vipData.ordersLeft==0?'任意':vipData.ordersLeft}}</span>
+                                笔订单{{vipData.amountLeft==0?'任意金额的订单':'且订单实付金额不低于'+vipData.amountLeft+'元'}}，即可保持VVIP蜜米！
+                            </p>
+                            <p v-else>
+                                恭喜，您当前已达到升级{{vipData.details[8-vipData.nextGradeId].chineseGrade}}条件，明天将自动为您升级！
+                            </p>
+                        </template>
+                    </template>
+                    <!---->
+                    <!--<p v-if="vipDetails.gradeId-1!=0&&vipDetails.gradeId-1!=1">&lt;!&ndash;{{time(vipDetails.gradeId-1)}}&ndash;&gt;-->
+                        <!--{{vipDetails.fromDate}}—{{vipDetails.toDate||'&nbsp;&nbsp;&nbsp;&nbsp;'}}内，购物笔数满{{vipDetails.ordersRequired}}笔，订单实付金额满{{vipDetails.amountRequired}}元，即可成为{{vipData.chineseGrade}}，享受专属诚意回馈。-->
+                    <!--</p>-->
+                    <!--<div v-else>-->
+                        <!--<p v-if="vipDetails.gradeId-1==0">-->
+                            <!--完成注册，即可成为新晋蜜米，享受专属返利回馈。-->
+                        <!--</p>-->
+                        <!--<p v-else>-->
+                            <!--完成任一笔订单，即可成为铜牌蜜米，享受专属返利回馈。-->
+                        <!--</p>-->
+                    <!--</div>-->
+                </div>
+
+            </div>
+            <h3><span></span>{{vipData.chineseGrade}}专享权益<span></span></h3>
+            <div class="vip-rights">
+                <p>购买美美箱自有品牌商品返现<span>{{vipDetails.pbReward}}%</span></p>
+                <div>
+                    <img src="/images/app/my/include/pony.png?t=20174271851" alt="pony">
+                    <img src="/images/app/my/include/meme.png?t=20174271851" alt="I'm meme">
+                    <img src="/images/app/my/include/nooni.png?t=20174271851" alt="nooni">
+                    <img src="/images/app/my/include/bonvivant.png?t=20174271851" alt="bonvivant">
+                </div>
+                <p>购买面膜类商品返现<span>{{vipDetails.maskReward}}%</span></p>
+                <p>购买任意普通商品返现<span>{{vipDetails.normalReward}}%</span></p>
+                <p>下单时蜜豆最高可抵扣订单总额的<span>{{vipDetails.allowPercent}}%</span>或<span>¥{{vipDetails.allowAmount}}</span></p>
+                <p>生日礼金<span>¥{{vipDetails.birthdayPresent}}</span>(需要在APP【个人信息】页面设置生日方可享受礼金)</p>
+            </div>
+        </div>
+
+    </div>
+    <div align="center"  class="go-more">
+        <a href="./moreLevel.html" class="mui-navigate-right">
+            查看目标等级
+        </a>
+    </div>
+</div>
+<script src="/scripts/app/appsdk/app.js?t=20174271851"></script>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script>
+    /*  *
+     *          ┏┓　　　┏┓
+     *        ┏┛┻━━━┛┻┓
+     *        ┃　　　　　　　┃ 　
+     *        ┃　　　━　　　┃
+     *        ┃　┳┛　┗┳　┃
+     *        ┃　　　　　　　┃
+     *        ┃　　　┻　　　┃
+     *        ┃　　　　　　　┃
+     *        ┗━┓　　　┏━┛
+     *        　　┃　　　┃神兽保佑
+     *        　　┃　　　┃代码无BUG！
+     *        　　┃　　　┗━━━┓
+     *        　　┃　　　　　　　┣┓
+     *        　　┃　　　　　　　┏┛
+     *        　　┗┓┓┏━┳┓┏┛
+     *        　　　┃┫┫　┃┫┫
+     *        　　　┗┻┛　┗┻┛
+     *　　　
+     */
+    var pageStart=new Date().getTime();
+
+    window.onerror=function (sMsg,sUrl,sLine) {
+        _maq.push(["_trackErrorEvent",{tag : location.href , level :"error" ,code :"30500",msg :JSON.stringify({msg:sMsg,line:sLine,sUrl:sUrl})}] )
+    }
+</script>
+<script src="/scripts/app/monitor/tingyun.js?t=20174271851"></script>
+<!--<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>-->
+<!-- Google Tag Manager -->
+<!--<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NGHG3H"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>-->
+<!--<script src="http://pkg-cn1001.memebox.com/static/production/ma.min.js"></script>-->
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js"></script>-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+
+
+
+(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-NGHG3H');
+
+ga('create', 'UA-70353868-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+<!-- End Google Tag Manager -->
+
+</body>
+<script>
+    require("/modules/my/vip");
+</script>
+
+</html>

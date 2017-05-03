@@ -1,0 +1,1 @@
+define("/modules/app/cart",function(a,c,t){t.exports={methods:{app_add_cart:function(a){window.callByJS&&window.callByJS({domain:"cart",action:"addcart",param:a,callback:function(a){vue.appAddCartCall(a)}})},app_to_cart:function(a){window.callByJS&&window.callByJS({domain:"cart",action:"to_cart",param:a})}}}});

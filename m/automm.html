@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html{
+            background: #ff64b8;
+        }
+    </style>
+
+
+</head>
+<body>
+<script>
+    var app = {
+        "cp-dlpp": {android: 'cp-dlpp', ios: 'https://lnk0.com/ElARlc'},
+        "cp-zypp": {android: 'cp-zypp', ios: 'https://lnk0.com/lwZ5wp'},
+        "jp-ds": {android: 'jp-ds', ios: 'https://lnk0.com/cwlgEp'},
+        "jp-pp": {android: 'jp-pp', ios: 'https://lnk0.com/RZhABt'},
+        "pp-mmx": {android: 'pp-mmx', ios: 'https://lnk0.com/JBt8Qh'},
+        "ty-cz": {android: 'ty-cz', ios: 'https://lnk0.com/okoUdc'},
+        "ty-grhl": {android: 'ty-grhl', ios: 'https://lnk0.com/ookQd4'},
+        "ty-ht": {android: 'ty-ht', ios: 'https://lnk0.com/1A9oo0'},
+        "ty-hzjm": {android: 'ty-hzjm', ios: 'https://lnk0.com/k80sEh'},
+        "ty-hzp": {android: 'ty-hzp', ios: 'https://lnk0.com/dk0IR9'},
+        "ty-mbhf": {android: 'ty-mbhf', ios: 'https://lnk0.com/QZNFd4'},
+        "ty-mbql": {android: 'ty-mbql', ios: 'https://lnk0.com/dYlcsg'},
+        "ty-mmmt": {android: 'ty-mmmt', ios: 'https://lnk0.com/Y5QtQ9'},
+        "ty-ybhl": {android: 'ty-ybhl', ios: 'https://lnk0.com/os0sko'},
+        "sm-cp-dlpp": {android: 'sm-cp-dlpp', ios: 'https://lnk0.com/EJhswd'},
+        "sm-cp-zypp": {android: 'sm-cp-zypp', ios: 'https://lnk0.com/1U5Qt0'},
+        "sm-jp-ds": {android: 'sm-jp-ds', ios: 'https://lnk0.com/E1UFB5'},
+        "sm-jp-pp": {android: 'sm-jp-pp', ios: 'https://lnk0.com/lER9g0'},
+        "sm-pp-mmx": {android: 'sm-pp-mmx', ios: 'https://lnk0.com/JFRxps'},
+        "sm-ty-cz": {android: 'sm-ty-cz', ios: 'https://lnk0.com/FFloks'},
+        "sm-ty-grhl": {android: 'sm-ty-grhl', ios: 'https://lnk0.com/Uh8wN5'},
+        "sm-ty-ht": {android: 'sm-ty-ht', ios: 'https://lnk0.com/kQ5Eh8'},
+        "sm-ty-hzjm": {android: 'sm-ty-hzjm', ios: 'https://lnk0.com/AdcgAh'},
+        "sm-ty-hzp": {android: 'sm-ty-hzp', ios: 'https://lnk0.com/wp844c'},
+        "sm-ty-mbhf": {android: 'sm-ty-mbhf', ios: 'https://lnk0.com/0s8Yp0'},
+        "sm-ty-mbqj": {android: 'sm-ty-mbqj', ios: 'https://lnk0.com/I9ks0o'},
+        "sm-ty-mmmt": {android: 'sm-ty-mmmt', ios: 'https://lnk0.com/oM54E9'},
+        "sm-ty-ybhl": {android: 'sm-ty-ybhl', ios: 'https://lnk0.com/1o4I5k'},
+        "bd-ylbx": {android: 'bd-ylbx', ios: 'https://lnk0.com/IVtg0g'},
+    }
+    var hash = location.hash && location.hash.replace('#', '');
+    var ab = app[hash] || app['cp-dlpp'];
+    var ua = navigator.userAgent.toLowerCase();
+    if (/iphone|ipad|ipod/.test(ua)) {
+        location.href = ab.ios;
+    } else if (/android/.test(ua)) {
+        location.href = 'http://pkg-cn1001.memebox.com/android/other/app-' + ab.android + '.apk';
+    }
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?d4e20f750446fceba58df07110e4e971";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>全球No.1韩国化妆品平台  - 美美箱Memebox</title>
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱是全球No.1韩国专业化妆品电商平台,每件商品均由美妆专家严格挑选，韩国直邮到您家, 详情登陆美美箱官网, 韩国化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，韩国化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，韩国,韩国化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="icon" href="/images/app/favicon.png" type="image/x-icon" />
+<link rel="shortcut icon" href="/images/app/favicon.png" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.min.css" rel="stylesheet" />
+<script src="/scripts/app/config.js?t=20166141647"></script>
+
+    <link href="/styles/app/vendor/mui/mui.picker.css" rel="stylesheet"/>
+    <link href="/styles/app/vendor/mui/mui.poppicker.css" rel="stylesheet"/>
+    <link href="/styles/app/html/special/group/style.css?t=20166141647" rel="stylesheet"/>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js"></script>
+<script type="text/javascript" src="/scripts/app/modules/vue/vue-common.js?t=20166141647"></script>
+<script type="text/javascript" src="/scripts/app/modules/special/group/order.js?t=20166141647"></script>
+
+</head>
+<body id="app">
+<header v-if="!isApp()" v-show="!isApp()" style="display: none" class="mui-bar mui-bar-nav memebox-header">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">拼团确认</h1>
+    <!--<a @tap="check" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">完成</a>-->
+</header>
+<div class="mui-content">
+    <validator name="validation">
+        <form novalidate class="mui-input-group">
+            <div class="mui-input-row">
+                <label>收件人：</label>
+                <input id="name" v-model="param.name"
+                       v-validate:name="{required:{rule: true,message:'请输入收件人姓名'},maxlength: {rule:20 , message:'收件人姓名过长'}}" type="text" placeholder="请输入收件人姓名">
+            </div>
+            <div class="mui-input-row">
+                <label>手机：</label>
+                <input id="phone" v-model="param.phone"
+                       v-validate:phone="{required:{rule: true,message:'请输入收货人手机号'},maxlength: {rule:11 , message:'请输入11位手机号'}}"  type="number" placeholder="请输入常用手机号">
+            </div>
+            <div class="mui-input-row">
+                <label>省市区：</label>
+                <input id="addressText" v-model="addressText"
+                       v-validate:addressText="{required:{rule: true,message:'请选择省市区'}}" readonly @click="selectCity" type="text" placeholder="请选择省市区">
+            </div>
+            <div class="mui-input-row">
+                <label>街道地址：</label>
+                <input id="street" v-model="param.street"
+                       v-validate:street="{required:{rule: true,message:'请输入街道地址'}}" type="text" placeholder="请输入街道地址">
+            </div>
+        </form>
+    </validator>
+    <div class="btn-box">
+        <button @tap="check" class="mui-btn mui-btn-mm mui-btn-block pay-btn">支付宝支付</button>
+    </div>
+
+</div>
+</body>
+<script src="/scripts/app/vendor/mui/mui.picker.js"></script>
+<script src="/scripts/app/vendor/mui/mui.poppicker.js"></script>
+<script src="/scripts/app/vendor/city.data-3.js"></script>
+<script src="/scripts/app/vendor/city.js"></script>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script src="/scripts/app/plugins/echo.js?t=20166141647"></script>
+<script>
+    require('/modules/special/group/order');
+</script>
+</body>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<!-- Google Tag Manager -->
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NGHG3H"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+
+
+
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+                '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NGHG3H');
+
+    ga('create', 'UA-70353868-3', 'auto');
+    ga('send', 'pageview');
+</script>
+<!-- End Google Tag Manager -->
+
+</html>

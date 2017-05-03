@@ -1,0 +1,156 @@
+<div class="mask" v-show="showAddress||showLogin" style="display: none">
+    <div class="layer" @tap="hideMask"></div>
+    <div class="login frame" v-show="showLogin">
+        <div class="top" algin="center">
+            登录即可参与抽奖
+            <span class="close" @tap="hideMask"></span>
+        </div>
+        <div class="login-main">
+            <div class="login-input">
+                <input type="text"
+                       v-model="param.phone"
+                       placeholder="请输入手机号">
+                <input type="text"
+                       v-model="param.authCode"
+                       placeholder="请输入验证码">
+                <span class="get-btn" @tap="getAuth">{{typeof showTime.time === "number"?showTime.time+"s":showTime.time}}</span>
+            </div>
+            <span class="btn login-btn" @tap="login(true)">登录</span>
+        </div>
+    </div>
+    <div class="address frame" v-show="showAddress">
+        <div class="top" algin="center">
+            填写收货地址
+            <span class="close" @tap="hideMask"></span>
+        </div>
+        <div class="add-main" v-show="pageData.raffle.info.status!=2">
+            <validator name="validation">
+                <form novalidate>
+                    <ul>
+                        <li>
+                            <label>
+                            <span>
+                                收件人
+                            </span>
+                                <input type="text"
+                                       v-model="userInfo.name"
+                                       placeholder="姓名"
+                                       name="username"
+                                       v-validate:username="['username']"
+                                >
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <span>
+                                手机号
+                            </span>
+                                <input type="number"
+                                       name="phone"
+                                       v-model="userInfo.phone"
+                                       v-validate:phone="['phone']"
+                                       placeholder="收货人电话">
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <span>
+                                地址
+                            </span>
+                                <input type="text"
+                                       @click="selectCity"
+                                       name="address"
+                                       v-model="userInfo.address"
+                                       v-validate:address="{require:{rule:true,message:'请输入正确地址'}}"
+                                       placeholder="省份   市／地区   区县"
+                                       readonly
+                                >
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span></span>
+                                <input type="text"
+                                       name="street"
+                                       v-model="userInfo.street"
+                                       v-validate:street="['street']"
+                                       placeholder="详细地址"
+                                >
+                            </label>
+                        </li>
+                    </ul>
+                </form>
+            </validator>
+            <span class="btn" @tap="addAddress">确定</span>
+        </div>
+        <div class="add-main" v-show="pageData.raffle.info.status==2">
+            <validator name="validation">
+                <form novalidate>
+                    <ul>
+                        <li>
+                            <label>
+                            <span>
+                                收件人
+                            </span>
+                                <input type="text"
+                                       v-model="userInfo.name"
+                                       placeholder="姓名"
+                                       name="username"
+                                       readonly
+                                >
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <span>
+                                手机号
+                            </span>
+                                <input type="number"
+                                       name="phone"
+                                       v-model="userInfo.phone"
+                                       placeholder="收货人电话"
+                                       readonly
+                                >
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                            <span>
+                                地址
+                            </span>
+                                <input type="text"
+                                       name="address"
+                                       v-model="userInfo.address"
+                                       placeholder="省份   市／地区   区县"
+                                       readonly
+                                >
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span></span>
+                                <input type="text"
+                                       name="street"
+                                       v-model="userInfo.street"
+                                       placeholder="详细地址"
+                                       readonly
+                                >
+                            </label>
+                        </li>
+                    </ul>
+                </form>
+            </validator>
+        </div>
+    </div>
+</div>
+<div class="wx-share-backdrop" v-show="wxShareShow" style="display: none;">
+    <div class="circle-icon">
+        <i class="share-icon"></i>
+    </div>
+    <div class="wx-share-click">点击分享</div>
+    <div>
+        点击右上角，分享给小伙伴<br>
+        万一抽中大奖，她们得请你吃饭！
+    </div>
+    <button class="close-button" @tap="closeWxShare">关闭</button>
+</div>

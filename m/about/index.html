@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球知名化妆品平台- 美美箱MEMEBOX</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=20174271851"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js" >
+</script>
+<script type="text/javascript">
+    var _maq = _maq || [] ;
+</script>
+    <link href="/styles/app/html/about/index.css?t=20174271851" rel="stylesheet"/>
+    <link href="/styles/app/js/plugins/swiper/swiper-3.3.1.min.css?t=20174271851" rel="stylesheet"/>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/app/app.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/about/about.js?t=20174281123"></script>
+
+</head>
+<body id="app" v-show="init" style="display: none">
+    <div class="top-container">
+        <img src="/images/app/about/include/song.png?t=20174271851">
+        <div class="des">
+            全球知名化妆品平台<span v-if="version"> | 版本 : V {{version}}</span>
+        </div>
+    </div>
+    <div class="tab-header clearfix">
+        <li v-for="(key,item) in tab">
+            <div class="tab-item fleft {{key == activeIndex ? 'active':''}}" @tap="onTabClick(key)">{{item.title}}</div>
+        </li>
+    </div>
+
+    <!--"美美全球"-->
+    <div class="tab-content" v-show="activeIndex == 0" style="display: none">
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/1-1.jpg?t=20174271851">
+        <div class="title">全球知名化妆品平台</div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/1-2.png?t=20174271851">
+        <div class="text">
+            Memebox2012年成立于韩国首尔，2015年被评为韩国消费者满意指数排名第一的化妆品部门，并获大韩民国优秀企业大奖。
+        </div>
+        <div class="title">
+            全球市场布局
+        </div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/1-3.jpg?t=20174271851">
+        <div class="text">
+            Memebox从2014年开始，先后在美国和中国成立了分公司，2016年开始进军东南亚市场。致力于为全世界的女性提供最优质有趣的美妆时尚服务。
+        </div>
+        <div class="title">线下全新体验</div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/1-4.jpg?t=20174271851">
+        <div class="text">
+            为给用户提供更为细致的服务，Memebox的产品已在屈臣氏，乐天免税店等线下实体店有售。
+            2016年，第一家线下旗舰店也在首尔江南地区开设。
+        </div>
+        <div class="title">公司发展历程</div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/1-5.png?t=20174271851">
+    </div>
+
+    <!--"品牌优势"-->
+    <div class="tab-content" v-show="activeIndex == 1" style="display: none">
+        <div class="title">四大直营品牌</div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/2-1.png?t=20174271851">
+        <div class="text">
+            PONY EFFECT是由品牌缪斯人物PONY自创的独立彩妆品牌。品牌力求在彩妆领域专注探索，给产品注入PONY自身的灵感，教程视频化帮助人们更容易掌控彩妆技巧，发掘适合自己的绝美妆容，影响更多人坚持做自己，为自己而妆  ，让更多人爱上妆自己。
+        </div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/2-2.jpg?t=20174271851">
+        <div class="text">
+            I’m MEME是一个来自韩国，充满朝气的彩妆品牌。它是韩国屈臣氏销售前四，Lohb’s彩妆销售第一，乐天百货弘大店(L-cube)销售第一的彩妆品牌。还是韩国排名前三的化妆品生产厂商Cosmeca的最大订单客户。
+        </div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/2-3.jpg?t=20174271851">
+        <div class="text">
+            bonvivant由研发高级护肤品活力成分的原料公司秉承着创新的原则及丰富的美容心得，通过20年的研究下创造而成的bonvivant,拥有着不同功效的面膜系列，打造出“一天一面膜”的新概念。从自然生物开始，用珍贵的原料，让失去活力的肌肤重复生机分享打造红润有血色的秘诀。
+        </div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/2-4.jpg?t=20174271851">
+        <div class="text">
+            nooni是韩国memebox第一个自有护肤品牌，一直致力于寻找韩国当地最优质的水源。nooni意识到水的绝对重要性，将重点放在“水”上，集中于研发更好的水成分，只为给予您的肌肤源于自然健康的美丽。
+        </div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/2-5.png?t=20174271851">
+        <div class="title">授权协议证书</div>
+
+        <div class="swiper-container">
+            <div @drag="swiper" class="swiper-wrapper">
+                <div class="swiper-slide" v-for="img in authImg">
+                    <img class="swiper-lazy" data-src="{{img}}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--"消费保证"-->
+    <div class="tab-content" v-show="activeIndex == 2" style="display: none">
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/3-1.jpg?t=20174271851">
+        <div class="text">
+            memebox凭借巨大品牌实力保障,自营pony,im…四大美妆品牌，代理iope、whoo多家优质韩妆，确保全场商品直采韩国，并最大限度缩减中间成本保证我们的蜜米们能以最优价格感受来自韩国的时尚魅力。
+        </div>
+        <div class="text">
+            我们拥有多年韩国美妆时尚经验，更有来自pony等美妆天后的专业指引，确保所选产品均有最佳口碑蜜米们尽可放心选购。
+        </div>
+        <img src="/images/app/about/include/default.png?t=20174271851" data-echo="/images/app/about/include/3-2.jpg?t=20174271851">
+        <div class="text">
+            MEMEBOX拥有极速仓、深圳保税仓、韩国直邮三大仓储中心。实行7日无理由退换，支持国内退货，更省国际运费。
+            极速仓商品：下单后16:00前的订单尽量在当日派发，16:00后的订单将于次日派发。预计3-5个工作日收货.
+            保税仓商品：下单后2个工作日从深圳保税仓发货。预计3-7个工作日收货
+            韩国直邮商品：下单后3-5个工作日发货。预计7-14个工作日收货。
+            （偏远地区和法定节假日或进出口海关清关，收货时间无法估计。如果急需购买使用的客户请慎重。）
+        </div>
+    </div>
+
+    <div class="corporation">
+        <div class="font-blue"><a href="./service.html">服务条款</a></div>
+        <div class="font-blue"><a href="./agreement.html">个人网申协议</a></div>
+        <div class="font-grey">官方微信：memebox_china</div>
+        <div class="font-grey">客服热线：<a href="tel://4007209967">400-720-9967</a></div>
+        <div class="font-grey">© 2015 Memebox Corporation. All Rights Reserved</div>
+    </div>
+</body>
+<script src="/scripts/app/appsdk/app.js?t=20174271851"></script>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script src="/scripts/app/plugins/swiper/swiper-3.3.1.min.js?t=20174271851"></script>
+<script>
+    require('/modules/about/about');
+</script>
+<script>
+    /*  *
+     *          ┏┓　　　┏┓
+     *        ┏┛┻━━━┛┻┓
+     *        ┃　　　　　　　┃ 　
+     *        ┃　　　━　　　┃
+     *        ┃　┳┛　┗┳　┃
+     *        ┃　　　　　　　┃
+     *        ┃　　　┻　　　┃
+     *        ┃　　　　　　　┃
+     *        ┗━┓　　　┏━┛
+     *        　　┃　　　┃神兽保佑
+     *        　　┃　　　┃代码无BUG！
+     *        　　┃　　　┗━━━┓
+     *        　　┃　　　　　　　┣┓
+     *        　　┃　　　　　　　┏┛
+     *        　　┗┓┓┏━┳┓┏┛
+     *        　　　┃┫┫　┃┫┫
+     *        　　　┗┻┛　┗┻┛
+     *　　　
+     */
+    var pageStart=new Date().getTime();
+
+    window.onerror=function (sMsg,sUrl,sLine) {
+        _maq.push(["_trackErrorEvent",{tag : location.href , level :"error" ,code :"30500",msg :JSON.stringify({msg:sMsg,line:sLine,sUrl:sUrl})}] )
+    }
+</script>
+<script src="/scripts/app/monitor/tingyun.js?t=20174271851"></script>
+<!--<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>-->
+<!-- Google Tag Manager -->
+<!--<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NGHG3H"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>-->
+<!--<script src="http://pkg-cn1001.memebox.com/static/production/ma.min.js"></script>-->
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js"></script>-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+
+
+
+(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-NGHG3H');
+
+ga('create', 'UA-70353868-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+<!-- End Google Tag Manager -->
+
+</html>

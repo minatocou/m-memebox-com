@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>美美箱</title>
+<meta name="keywords" content="{{keywords}}">
+<meta name="description" content="{{description}}">
+<link href="/styles/app/vendor/mui/mui.min.css" rel="stylesheet" />
+<script src="/scripts/app/vendor/mod-amd.js"></script>
+<script src="/scripts/app/vendor/mui/mui.js"></script>
+<script src="/scripts/app/config.js?t=201651017"></script>
+    <link href="/styles/app/html/home/style.css?t=201651017" rel="stylesheet"/>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/vue.js"></script>
+<script type="text/javascript" src="/scripts/app/modules/vue/vue-validator.js"></script>
+<script type="text/javascript" src="/scripts/app/modules/vue/vue-resource.js"></script>
+<script type="text/javascript" src="/scripts/app/modules/vue/vue-share.js"></script>
+<script type="text/javascript" src="/scripts/app/modules/vue/vue-common.js"></script>
+<script type="text/javascript" src="/scripts/app/modules/home/home.js"></script>
+
+</head>
+<body id="app" class="home-page">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a href="{{page}}/my/home.html" class="personage"></a>
+    <h1 class="mui-title">MEMEBOX</h1>
+    <a href="{{page}}/search/search.html" class="search mui-icon mui-icon-search"></a>
+</header>
+<div style="display: none" v-show="init" class="mui-content">
+    <div class="mui-slider" id="menu">
+        <div id="sliderSegmentedControl"
+             class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+            <div class="mui-scroll">
+    <a v-for="menu in dataMenu['data']"
+       v-if="menu['menu_title']=='首页'"
+       menu_id="{{menu['menu_id']}}"
+       href="#{{menu['menu_id']}}"
+       class="mui-control-item"
+       v-bind:class="[menu['menu_id']==categoryId||categoryId==''?'mui-active':'']"
+       @tap="showHomepage"
+    >{{menu["menu_title"]}}</a>
+    <a v-for="menu in dataMenu['data']"
+       v-if="menu['menu_title']!='首页'"
+       menu_id="{{menu['menu_id']}}"
+       href="#{{menu['menu_id']}}"
+       class="mui-control-item"
+       v-bind:class="[menu['menu_id']==categoryId?'mui-active':'']"
+       @tap="menuMethod"
+    >{{menu["menu_title"]}}</a>
+    <!--<a class="mui-control-item" menu_id="2" href="#2" v-on="click: test()">q2</a>-->
+    <!--<a class="mui-control-item" menu_id="3" href="#3" @tap="menuMethod">q3</a>-->
+    <!--<a class="mui-control-item" menu_id="4" href="#4" @tap="menuMethod">q4</a>-->
+</div>
+
+        </div>
+    </div>
+    <!--首页-->
+    <!--主页面-->
+<div v-show="isHomepage=='1'" id="home-index">
+    <!--banner轮播-->
+    <banner-slider :data=dataBanner["data"]
+                   :classify="{{page}}/productClassify/productClassify.html#"
+                   :details="{{page}}/productDetails/productDetails.html#"></banner-slider>
+    <!--活动列表-->
+    <div class="new-product" v-for="topic in dataTopic" v-if="topic['bannerData'].length!=0">
+    <ul class="mui-table-view mui-table-view-chevron">
+        <li class="mui-table-view-cell product-titile">
+            <a class="mui-navigate-right">
+                {{topic["title"]}}
+            </a>
+        </li>
+        <li v-for=" topicData in topic['bannerData']">
+            <a v-if="topicData['banner_type']=='0'"
+               href={{page}}/productClassify/productClassify.html#{{topicData['target_id']}}>
+                <img :src=topicData["banner_image"]
+                     :alt=topicData["banner_title"]>
+            </a>
+            <a v-if="topicData['banner_type']=='1'"
+               href={{page}}/productDetails/productDetails.html#{{topicData['target_id']}}>
+                <img :src=topicData["banner_image"]
+                     :alt=topicData["banner_title"]>
+            </a>
+            <a v-if="topicData['banner_type']=='3'" href={{topicData['target_id']}}>
+                <img :src=topicData["banner_image"]
+                     :alt=topicData["banner_title"]>
+            </a>
+        </li>
+    </ul>
+</div>
+
+    <!--产品-->
+    <!--首页的产品列表-->
+<div class="new-user" v-for="productList in homeProductList" v-if="homeProductList.length!=0">
+
+    <ul class="mui-table-view mui-table-view-chevron">
+        <li class="mui-table-view-cell product-titile" v-if="productList['productList'].length!=0">
+            <a class="mui-navigate-right"
+               href={{page}}/productClassify/productClassify.html#{{productList['category_id']}}>
+                {{productList["title"]}}
+            </a>
+        </li>
+        <product-list v-for="list in productList['productList']"
+                      url={{$parent.page}}/productDetails/productDetails.html#
+                      :product-id="list['productId']"
+                      :description="list['brandName']+list['name']"
+                      :origin-price="list['originPrice']"
+                      :price="list['price']"
+                      :img="list['imgUrl']"
+                      :local="list['isLocalProduct']"
+                      :global="list['isGlobalProduct']"
+                      :ftz="list['isFTZProduct']"
+        ></product-list>
+    </ul>
+
+</div>
+</div>
+    <!--频道页-->
+    <!--频道页-->
+<ul class="mui-table-view mui-table-view-chevron" id="sort" v-show="isHomepage=='0'">
+    <sort :name="price" :method="sort" :asc="asc" :desc="desc"></sort>
+</ul>
+<!--下拉刷新容器-->
+<div id="pullrefresh" class="mui-scroll-wrapper" v-show="isHomepage=='0'">
+    <div class="mui-scroll">
+        <!--数据列表-->
+        <ul class="mui-table-view mui-table-view-chevron"  id="productList">
+            <product-list v-show="showList=='1'"
+                          v-for="productList in dataProductList['data']"
+                          url={{$parent.page}}/productDetails/productDetails.html#
+                          :product-id="productList['productId']"
+                          :description="productList['brandName']+productList['name']"
+                          :img="productList['imgUrl']"
+                          :price="productList['price']"
+                          :origin-price="productList['originPrice']"
+                          :local="productList['isLocalProduct']"
+                          :global="productList['isGlobalProduct']"
+                          :ftz="productList['isFTZProduct']"
+            ></product-list>
+        </ul>
+    </div>
+</div>
+    <!--购物车-->
+    <div class="shopping-cart">
+        <a href="{{page}}/cart/cart.html"></a>
+        <span class="number" v-if="cartNumber!=0">{{cartNumber}}</span>
+    </div>
+    <!--底部悬浮-->
+    <div style="background-image: url({{dataBottom['imageUrl']}})"
+         class="bottom-fix" v-if="isHomepage=='1'&&bottomFix==true">
+        <span @touchend="closeBottom" id="close-btn"></span>
+        <div class="bottom-text">
+            <h2>周二下单立减10元</h2>
+            <h2>周四下单立免运费</h2>
+        </div>
+        <a href="#">立即体验</a>
+    </div>
+</div>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script>
+    require('/modules/home/home');
+</script>
+</body>
+</html>

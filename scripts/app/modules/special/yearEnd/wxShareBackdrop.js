@@ -1,0 +1,1 @@
+define("/modules/special/yearEnd/wxShareBackdrop",function(e,h,a){a.exports={data:{wxShareShow:!1},methods:{wxShare:function(){this.wxShareShow=!0},closeWxShare:function(){this.wxShareShow=!1}}}});

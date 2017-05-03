@@ -1,0 +1,389 @@
+<!--预售订单-->
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球知名化妆品平台- 美美箱MEMEBOX</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=20174271851"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js" >
+</script>
+<script type="text/javascript">
+    var _maq = _maq || [] ;
+</script>
+    <link href="/styles/app/html/special/presale/order.css?t=20174271851" rel="stylesheet"/>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/payment/ga.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/app/app.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/special/presale/order.js?t=20174281123"></script>
+
+</head>
+<body class="mui-fullscreen">
+<div  id="app" class="mui-views">
+    <div class="mui-view">
+        <div class="mui-navbar">
+        </div>
+        <div style="display: none" v-show="init" class="mui-pages">
+        </div>
+    </div>
+</div>
+<div id="order" class="mui-page">
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>
+        </button>
+        <h1 class="mui-center mui-title">预售确认</h1>
+    </div>
+    <div class="mui-page-content ">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll mui-bottom">
+                <div align="center" v-show="!product" class="noPro">
+                    没有预售商品<br>赶快搜索精彩美妆吧<br>
+                    <a href="/m/special/presale/list.html" class="mui-btn mui-btn-mm mui-btn-outlined">去购物</a>
+                </div>
+                <div v-show="product">
+                    <div v-show="!orderAddress" class="new-address">
+                        <validator name="order-addrs">
+                            <form novalidate class="mui-input-group">
+                                <div class="mui-input-row">
+                                    <input id="name" v-model="param.name" name="name"
+                                           v-validate:name="{required:{rule: true,message:'请输入收件人姓名'},maxlength: {rule:20 , message:'收件人姓名过长'}}" type="text" placeholder="收件人姓名：（请填写真实姓名）">
+                                </div>
+                                <div class="mui-input-row">
+                                    <input id="phone" v-model="param.phone" name="phone"
+                                           v-validate:phone="['phone']"  type="number" placeholder="手机：">
+                                </div>
+                                <div v-show="isShowID()" class="mui-input-row">
+                                    <input type="text" id="idcard" name="idcard"
+                                           v-model="param.idcard"
+                                           v-validate:idcard="['idcard']" placeholder="身份证号：">
+                                    <!--<span class="id-card" v-show="!param.idcard">如需购买跨境商品,海关要求必须填写.</span>-->
+                                </div>
+                                <div class="mui-input-row">
+                                    <a class="mui-navigate-right">
+                                        <input id="addressText" v-model="addressText" name="addressText"
+                                               v-validate:addressText="{required:{rule: true,message:'请选择您的省份'}}" readonly @tap="selectCity" type="text" placeholder="选择地区：">
+                                    </a>
+                                </div>
+                                <div class="mui-input-row">
+                                    <input id="street" v-model="param.street" name="street"
+                                           v-validate:street="{required:{rule: true,message:'请输入街道地址'}}" type="text" placeholder="详细地址">
+                                </div>
+                                <div class="address-btn">
+                                    <button type="button" @tap="saveAddress" class="mui-btn mui-btn-block mui-btn-mm mui-btn-outlined">保存收货地址</button>
+                                </div>
+                            </form>
+                        </validator>
+                    </div>
+                    <div v-show="orderAddress" class="address-box bw">
+                        <div class="tip"></div>
+                        <a href="#address" class="mui-table-view-cell address">
+                            <div class="mui-navigate-right">
+                                <div v-if="orderAddress">
+                                    <div class="title">收货人：{{orderAddress.name}} {{orderAddress.phone}}</div>
+                                    <p class="ov2">{{orderAddress.province}}{{orderAddress.city}}{{orderAddress.district}}{{orderAddress.street}}</p>
+                                    <p class="icon-user">{{orderAddress.idcard | encryption}}</p>
+                                </div>
+                                <div v-else>
+                                    请选择收货地址
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <ul v-show="product" class="pro bw" :class=proType.name>
+                        <li class="mui-checkbox mini cart-title mui-table-view-cell" >
+                            <span>{{proType.text}}</span>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <div class="cart-img">
+                                <img class="pro-icon" :src="getProIcon(product)">
+                                <img class="pro-img" :src="product.imgUrl" alt=""/>
+                            </div>
+                            <div class="cart-text">
+                                <div class="clearfix">
+                                    <div class="title">
+                                        <span class="ov2">{{product.brandName}} {{product.productName}}</span>
+                                        <p class="gray ov">{{product.option}}</p>
+                                    </div>
+                                    <!--<div class="right-text">-->
+                                        <!--共{{product.qty}}件-->
+                                    <!--</div>-->
+                                </div>
+
+                                <div class="red">￥{{product.prePrice | toFixed}} <span class="num">{{product.qty}}</span></div>
+                            </div>
+                        </li>
+
+                        <li class="mui-table-view-cell presale-li red ">
+                            <span>第一步 预付定金</span>
+                            <span class="ft">￥{{product.depositTotal | toFixed}}</span>
+                        </li>
+                        <li class="mui-table-view-cell presale-li">
+                            <span>第二步 补尾款({{startPayTime.year}}.{{startPayTime.month}}.{{startPayTime.day}}  {{startPayTime.hour}}:{{startPayTime.minute}} 可支付尾款)</span>
+                            <span class="ft">￥{{(product.preTotal-product.depositTotal) | toFixed}}</span>
+                        </li>
+                        <li class="mui-table-view-cell presale-li">
+                            <span>运费总计</span>
+                            <span class="ft">￥0.00</span>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <div align="right" class="count-total">
+                                总计{{product.qty}}件  订单金额：<span class="price-text">￥{{product.preTotal | toFixed}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="pay not-select">
+                        <li class="mui-table-view-cell  box-title title">优惠选择（预售产品不能使用以下优惠）</li>
+                        <li class="mui-table-view-cell box-title">
+                            <span>可用蜜豆抵扣</span>
+                            <div class="close-select" >
+                                <div></div>
+                            </div>
+                        </li>
+                        <li class="mui-table-view-cell box-title ">
+                            优惠券
+                        </li>
+                    </ul>
+                    <!--同意条款-->
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell presale-li">
+                            <span>我已同意预付定金不退的相关规则</span>
+                            <div class="presale-switch " @tap="agreePresale" :class="presale&&'active'">
+                                <div class="presale-switch-handle" ></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mui-input-group count">
+        <div>支付金额：<span class="red">￥{{product.depositTotal | toFixed}}</span>
+        </div>
+        <span class="btn" @tap="checkout"  align="center">确认订单</span>
+        <!--<span @tap="checkout" class="mui-btn mui-btn-mm mui-btn-right" v-if="successOrders.length==0">确认订单</span>-->
+    </div>
+</div>
+<idcard v-ref:idcard :address="orderAddress"></idcard>
+<select-pay :pay="pay" v-ref:pay></select-pay>
+<div id="address" class="mui-page">
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>
+        </button>
+        <h1 class="mui-center mui-title">收货地址</h1>
+        <a href="#add" @tap="addClick()" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">新增地址</a>
+    </div>
+    <div class="mui-page-content">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <ul v-if="address && address.length>0" class="add-address">
+                    <li  v-for="(index,a) in address" class="address-box bw mui-table-view-cell mui-transitioning">
+                        <div class="mui-slider-right mui-disabled">
+                            <a @tap="removeAddress(a.addressId,index)" class="mui-btn mui-btn-red" style="transform: translate(0px, 0px);">删除</a>
+                        </div>
+                        <div class="mui-slider-handle">
+                            <div @tap="selectAddress(index)" class="address nb">
+                                <div class="title">{{a.name}} {{a.phone}}</div>
+                                <p class="ov2">{{a.province}}{{a.city}}{{a.district}}{{a.street}}</p>
+                                <p class="icon-user">{{a.idcard | encryption}}</p>
+                            </div>
+                            <div class="option">
+                                <div class="mui-input-row mui-radio mui-left mini">
+                                    <label>默认地址</label>
+                                    <input v-if="a.isDefault==1" @tap="da(index)" checked name="address" type="radio">
+                                    <input v-else name="address" @tap="da(index)" type="radio">
+                                </div>
+                                <div class="fr">
+                                    <a @tap="editAddress(index)" href="#add" class="icon-edit"><span class="mui-icon mui-icon-compose"></span>编辑</a>
+                                    <a @tap="removeAddress(a.addressId,index)" class="icon-remove"><span class="mui-icon mui-icon-trash"></span>删除</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                <div align="center" v-else class="noPro">
+                    购物车没有添加地址<br>赶快去添加吧!<br>
+                    <a href="#add" @tap="addClick()" class="mui-btn mui-btn-mm mui-btn-outlined">去添加</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="add" class="mui-page">
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>
+        </button>
+        <h1 class="mui-center mui-title">新增地址</h1>
+        <a @tap="saveAddress()" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">保存</a>
+    </div>
+    <div class="mui-page-content">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <validator name="validation">
+                    <form novalidate class="mui-input-group">
+                        <div class="mui-input-row">
+                            <input id="name" v-model="param.name" name="name"
+                            v-validate:name="{required:{rule: true,message:'请输入收件人姓名'},maxlength: {rule:20 , message:'收件人姓名过长'}}"
+                                   type="text" placeholder="收件人姓名：（请填写真实姓名）">
+                        </div>
+                        <div class="mui-input-row">
+                            <input id="phone" v-model="param.phone" name="phone"
+                                   v-validate:phone="['phone']"
+                                   type="number" placeholder="手机：">
+                        </div>
+                        <div v-show="isShowID() || param.idcard" class="mui-input-row">
+                            <input type="text" id="idcard" name="idcard" v-model="param.idcard"
+                                   v-validate:idcard="['idcard']"
+                                   placeholder="身份证号：">
+                            <!--<span class="id-card" v-show="!param.idcard">如需购买跨境商品,海关要求必须填写.</span>-->
+                        </div>
+                        <div class="mui-input-row">
+                            <a class="mui-navigate-right">
+                                <input id="addressText" v-model="addressText" name="addressText"
+                                       v-validate:addressText="{required:{rule: true,message:'请选择您的省份'}}" readonly
+                                       @tap="selectCity" type="text" placeholder="选择地区：">
+                            </a>
+                        </div>
+                        <div class="mui-input-row">
+                            <input id="street" v-model="param.street" name="street"
+                                   v-validate:street="{required:{rule: true,message:'请输入您的详细地址'}}" type="text"
+                                   placeholder="详细地址">
+                        </div>
+                    </form>
+                </validator>
+                <div class="btn-logout" v-if="isApp()">
+                    <a @tap="saveAddress()" class="mui-btn mui-btn-block mui-btn-mm">保存</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/scripts/app/vendor/mui/mui.view.js"></script>
+<script src="/scripts/app/vendor/mui/mui.picker.js"></script>
+<script src="/scripts/app/vendor/mui/mui.poppicker.js"></script>
+<script src="/scripts/app/vendor/city.data-3.js"></script>
+<script src="/scripts/app/vendor/city.js"></script>
+<script src="/scripts/app/vendor/underscore.js"></script>
+<script src="/scripts/app/appsdk/app.js?t=20174271851"></script>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script>
+    require('/modules/special/presale/order');
+</script>
+</body>
+<script>
+    /*  *
+     *          ┏┓　　　┏┓
+     *        ┏┛┻━━━┛┻┓
+     *        ┃　　　　　　　┃ 　
+     *        ┃　　　━　　　┃
+     *        ┃　┳┛　┗┳　┃
+     *        ┃　　　　　　　┃
+     *        ┃　　　┻　　　┃
+     *        ┃　　　　　　　┃
+     *        ┗━┓　　　┏━┛
+     *        　　┃　　　┃神兽保佑
+     *        　　┃　　　┃代码无BUG！
+     *        　　┃　　　┗━━━┓
+     *        　　┃　　　　　　　┣┓
+     *        　　┃　　　　　　　┏┛
+     *        　　┗┓┓┏━┳┓┏┛
+     *        　　　┃┫┫　┃┫┫
+     *        　　　┗┻┛　┗┻┛
+     *　　　
+     */
+    var pageStart=new Date().getTime();
+
+    window.onerror=function (sMsg,sUrl,sLine) {
+        _maq.push(["_trackErrorEvent",{tag : location.href , level :"error" ,code :"30500",msg :JSON.stringify({msg:sMsg,line:sLine,sUrl:sUrl})}] )
+    }
+</script>
+<script src="/scripts/app/monitor/tingyun.js?t=20174271851"></script>
+<!--<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>-->
+<!-- Google Tag Manager -->
+<!--<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NGHG3H"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>-->
+<!--<script src="http://pkg-cn1001.memebox.com/static/production/ma.min.js"></script>-->
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js"></script>-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+
+
+
+(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-NGHG3H');
+
+ga('create', 'UA-70353868-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+<!-- End Google Tag Manager -->
+
+</html>

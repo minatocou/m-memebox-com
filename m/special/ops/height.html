@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
+
+</head>
+<body>
+<input placeholder="这里填地址" id="inputUrl">
+
+<input type="button"
+       id="urlbtn"
+       value="抓取">
+<br>
+
+<input type="button" id="sub" value="生成"><br>
+输出<br>
+<textarea id="textOut" style="width: 100%;height: 200px"></textarea>
+<div id="cc"></div>
+<script src="/scripts/app/vendor/jquery.js"></script>
+<script>
+    $(function () {
+
+        $('#inputUrl').val(localStorage.inputUrl || '');
+        $('#urlbtn').click(function () {
+            localStorage.inputUrl = $('#inputUrl').val();
+            $.ajax({
+                url: $('#inputUrl').val(),
+                crossDomain: true,
+                type: 'get',
+                success: function (data, status, xhr) {
+                    var el = $(data);
+                    var ccc = $('#cc');
+                    ccc.append(el);
+                    var imgNum = ccc.find('img').length;
+                    ccc.find('img').each(function () {
+                        $(this).load(function () {
+                            if (!--imgNum) {
+                                ccc.find('a').each(function (i,item) {
+                                    var b=640/$(this).parent().find('img').width()
+                                    var iheight=$(this).parent().find('img').height()*b;
+                                    $(this).height(($(this).height()/iheight*100).toFixed(2)+'%');
+                                    console.log($(this).height());
+                                })
+                                $('#textOut').html(ccc.html());
+
+                            }
+                        })
+                    })
+                }
+            })
+        })
+
+        $('#sub').click(function () {
+            var text = $('#textInput').val();
+            console.log(text)
+        })
+    })
+</script>
+</body>
+</html>

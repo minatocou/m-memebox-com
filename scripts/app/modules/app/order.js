@@ -1,0 +1,1 @@
+define("/modules/app/order",function(o,a,r){r.exports={methods:{app_orderList:function(o){window.callByJS&&window.callByJS({domain:"order",action:"orderList",param:o})},app_orderDetail:function(o){window.callByJS&&window.callByJS({domain:"order",action:"orderDetail",param:o})}}}});

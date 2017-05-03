@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>全球No.1韩国化妆品平台  - 美美箱Memebox</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱是全球No.1韩国专业化妆品电商平台,每件商品均由美妆专家严格挑选，韩国直邮到您家, 详情登陆美美箱官网, 韩国化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，韩国化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，韩国,韩国化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="icon" href="/images/app/favicon.png" type="image/x-icon" />
+<link rel="shortcut icon" href="/images/app/favicon.png" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.min.css" rel="stylesheet" />
+<script defer src="/scripts/app/config.js?t=20168291012"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    /*  *
+     *          ┏┓　　　┏┓
+     *        ┏┛┻━━━┛┻┓
+     *        ┃　　　　　　　┃ 　
+     *        ┃　　　━　　　┃
+     *        ┃　┳┛　┗┳　┃
+     *        ┃　　　　　　　┃
+     *        ┃　　　┻　　　┃
+     *        ┃　　　　　　　┃
+     *        ┗━┓　　　┏━┛
+     *        　　┃　　　┃神兽保佑
+     *        　　┃　　　┃代码无BUG！
+     *        　　┃　　　┗━━━┓
+     *        　　┃　　　　　　　┣┓
+     *        　　┃　　　　　　　┏┛
+     *        　　┗┓┓┏━┳┓┏┛
+     *        　　　┃┫┫　┃┫┫
+     *        　　　┗┻┛　┗┻┛
+     *　　　
+     */
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    <link href="/styles/app/html/home/style.css?t=20168291012" rel="stylesheet"/>
+    <meta property="wb:webmaster" content="cae0bbcb35831a50" />
+    <meta property="qc:admins" content="24574771725655552706375" />
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20168291012"></script>
+<script type="text/javascript" src="/scripts/app/modules/home/home.js?t=20168291012"></script>
+
+</head>
+<body id="app" class="home-page">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a :href="page+'/my/home.html'" class="personage"></a>
+    <h1 class="mui-title">MEMEBOX</h1>
+    <a :href="page+'/search/search.html'" class="search mui-icon mui-icon-search"></a>
+</header>
+<div style="display: none" v-show="init" class="mui-content">
+    <div class="mui-slider" id="menu">
+        <div id="sliderSegmentedControl"
+             class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+            <div class="mui-scroll">
+    <a v-for="menu in dataMenu"
+       v-if="menu['menu_title']=='首页'"
+       menu_id="{{menu['menu_id']}}"
+       href="#{{menu['menu_id']}}"
+       class="mui-control-item"
+       v-bind:class="[menu['menu_id']==categoryId||categoryId==''?'mui-active':'']"
+       @tap="showHomepage"
+       index={{$index}}
+    >{{menu["menu_title"]}}</a>
+    <a v-for="menu in dataMenu"
+       v-if="menu['menu_title']!='首页'"
+       menu_id="{{menu['menu_id']}}"
+       href="#{{menu['menu_id']}}"
+       class="mui-control-item"
+       v-bind:class="[menu['menu_id']==categoryId?'mui-active':'']"
+       @tap="menuMethod"
+       index={{$index}}
+    >{{menu["menu_title"]}}</a>
+</div>
+
+        </div>
+    </div>
+    <!--首页-->
+    <!--主页面-->
+<div v-show="isHomepage=='1'" id="home-index">
+    <!--banner轮播-->
+    <!--活动列表-->
+
+    <div v-show="dataBanner.length==1&&dataBanner[0]['banner_image']!=''">
+    <a :href="bannerHref(dataBanner[0].banner_type,dataBanner[0].target_id)">
+        <img :src=dataBanner[0]["banner_image"] :alt="dataBanner[0]['banner_title']" style="vertical-align: top;" width="100%">
+    </a>
+</div>
+<div v-show="dataBanner.length>=2">
+    <swipe class="vue-swipe">
+        <swipe-item v-for="banner in dataBanner">
+            <a :href="bannerHref(banner.banner_type,banner.target_id)">
+                <img :src=banner["banner_image"] :alt="banner['banner_title']" style="vertical-align: top;">
+            </a>
+        </swipe-item>
+    </swipe>
+</div>
+
+
+    <!--抢购-->
+    <!--抢购-->
+
+<div id="flash" v-show="dataFlash.data.productList&&dataFlash.data.productList.length!=0">
+    <div class="flash-header product-titile" >
+        <span class="flash-title ">
+            专享抢购
+        </span>
+        <div class="show-time">
+            <span class="days" v-show="dd[0]!=0||dd[1]!=0">
+                <span>
+                    {{dd[0]}}
+                </span>
+                <span>
+                    {{dd[1]}}
+                </span>
+                天
+            </span>
+            <span class="hours">
+                <span>
+                    {{hh[0]}}
+                </span>
+                <span>
+                    {{hh[1]}}
+                </span>
+                时
+            </span>
+            <span class="minutes">
+                <span>
+                    {{mm[0]}}
+                </span>
+                <span>
+                    {{mm[1]}}
+                </span>
+                分
+            </span>
+            <span class="seconds">
+                <span>
+                    {{ss[0]}}
+                </span>
+                <span>
+                    {{ss[1]}}
+                </span>
+                秒
+            </span>
+        </div>
+    </div>
+    <div class="flash-container">
+        <ul class="flash-content">
+            <li class="flash-box"
+                v-for="productList in dataFlash.data.productList"
+                v-bind:class={"stockout":productList.stockStatus=="0"}
+                @tap="$parent.go('/m/productDetails/productDetails.html#'+productList.productId)" >
+                <div class="show-flash-img">
+                    <span class="icon"
+                          v-show="productList.stockStatus!='0'">
+                        <img :src=$parent.getProIcon(productList) alt="美美箱">
+                    </span>
+                    <div class="stockout-mark" v-show=productList.stockStatus=="0">
+                        <span>售&nbsp;&nbsp;罄</span>
+                    </div>
+                    <img :src=productList.imgUrl alt="美美箱">
+                </div>
+                <div class="flash-product-details">
+                    <h2 class="ov2">
+                        {{productList.brandName+productList.name}}
+                    </h2>
+                    <div class="flash-product-price">
+                        <div class="show-price">
+                            <p>
+                                <del class="original-price" v-show="(productList.originPrice-productList.price)>0">{{productList.originPrice}}</del>
+                            </p>
+                            <span class="price">{{productList.price}}</span>
+                        </div>
+                        <button class="flash-btn">立即抢购</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <div class="new-product" v-for="topic in dataTopic" v-show="topic.bannerData.length>1||(topic.bannerData.length==1&&topic.bannerData[0].banner_image!='')">
+    <ul class="mui-table-view mui-table-view-chevron">
+        <li class="mui-table-view-cell product-titile">
+            <a class="mui-navigate-right">
+                {{topic["title"]}}
+            </a>
+        </li>
+        <li v-for=" topicData in topic.bannerData" v-show="topicData.banner_image!=''">
+            <a :href=bannerHref(topicData.banner_type,topicData.target_id)>
+                <img :data-echo=topicData["banner_image"]
+                     :alt=topicData["banner_title"]
+                     src="/images/app/memebox-b.png"
+                >
+            </a>
+        </li>
+    </ul>
+</div>
+    <!--产品-->
+    <!--首页的产品列表-->
+<div class="new-user" v-for="productList in homeProductList" v-if="homeProductList.length!=0">
+
+    <ul class="mui-table-view mui-table-view-chevron">
+        <li class="mui-table-view-cell product-titile" v-if="productList['productList'].length!=0">
+            <a class="mui-navigate-right"
+               href={{page}}/productClassify/productClassify.html#{{productList['category_id']}}>
+                {{productList["title"]}}
+            </a>
+        </li>
+        <product-list v-for="list in productList['productList']"
+                      url=/m/productDetails/productDetails.html#
+                      :product-id="list['productId']"
+                      :description="list['brandName']+list['name']"
+                      :origin-price="list['originPrice']"
+                      :price="list['price']"
+                      :img="list['imgUrl']"
+                      :icon="list"
+                      :stock-status="list['stockStatus']"
+        ></product-list>
+    </ul>
+
+</div>
+    <!--&lt;!&ndash;底部悬浮&ndash;&gt;-->
+    <!--<div class="bottom-fix" :class="bottomFix==true ? 'show' : 'hide'">-->
+        <!--<img :src="dataBottom['imageUrl']">-->
+        <!--<span @touchend="closeBottom" id="close-btn"></span>-->
+        <!--<div class="bottom-text">-->
+            <!--<h2>注册即获50元</h2>-->
+        <!--</div>-->
+        <!--<a @tap="getAppUrl()">立即体验</a>-->
+    <!--</div>-->
+</div>
+
+    <!--频道页-->
+    <!--频道页-->
+<!--下拉刷新容器-->
+<div id="pullrefresh" class="mui-scroll-wrapper" v-show="isHomepage=='0'">
+    <div class="mui-scroll">
+        <!--数据列表-->
+        <ul class="mui-table-view mui-table-view-chevron" id="productList">
+            <sort :position="position"
+                  :position-sort="positionSort"
+                  :price-sort="priceSort"
+                  :price="price"></sort>
+            <product-list v-show="showList=='1'"
+                          v-for="productList in dataProductList['data']"
+                          url=/m/productDetails/productDetails.html#
+                          :product-id="productList['productId']"
+                          :description="productList['brandName']+productList['name']"
+                          :img="productList['imgUrl']"
+                          :price="productList['price']"
+                          :origin-price="productList['originPrice']"
+                          :icon="productList"
+                          :stock-status="productList['stockStatus']"
+            ></product-list>
+        </ul>
+    </div>
+</div>
+    <!--底部悬浮和购物车-->
+    <!--购物车-->
+    <div class="bottom-box">
+        <div class="shopping-cart">
+            <a href="{{page}}/cart/cart.html"></a>
+            <span class="number" v-if="cartNumber!=0">{{cartNumber}}</span>
+        </div>
+        <!--底部悬浮-->
+        <div v-show="isHomepage=='1'&&bottomFix" class="bottom-fix" transition="bottom-fix">
+            <span @touchend="closeBottom" id="close-btn" class="vc"></span>
+            <!--:class="bottomFix==true ? 'show' : 'hide'">-->
+            <img :src="dataBottom['imageUrl']" class="vc">
+            <div class="bottom-text vc ">
+                <h2>美美箱 · 全球No.1韩妆平台</h2>
+                <p>注册即获50元</p>
+            </div>
+            <a @tap="getAppUrl()">立即体验</a>
+        </div>
+    </div>
+</div>
+<div class="come-in" v-show="!init" >
+    <div class="come-ani-box">
+        <img src="/images/app/home/include/m.png" id="animation">
+        <span class="ball"></span>
+    </div>
+</div>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script>
+    require('/modules/home/home');
+</script>
+</body>
+<!--<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>-->
+<!-- Google Tag Manager -->
+<!--<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NGHG3H"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>-->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+
+
+
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+                '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NGHG3H');
+
+    ga('create', 'UA-70353868-3', 'auto');
+    ga('send', 'pageview');
+</script>
+<!-- End Google Tag Manager -->
+
+</html>

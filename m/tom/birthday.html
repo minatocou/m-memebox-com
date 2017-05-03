@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MeMeBox2周年</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="baidu-site-verification" content="0NcBQMiC0n" />
+    <meta name="description" content="美美箱是全球No.1韩国专业化妆品电商平台,每件商品均由美妆专家严格挑选，韩国直邮到您家, 详情登陆美美箱官网, 韩国化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+    <meta name="keywords" content="美美箱，韩国化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，韩国,韩国化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+    <link rel="icon" href="http://cn.m.memebox.com/images/app/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="http://cn.m.memebox.com/images/app/favicon.png" type="image/x-icon" />
+    <link href="/styles/app/html/ops/birthday/style.css?t=20168291012" rel="stylesheet"/>
+    <script defer src="/scripts/app/config.js?t=20168291012"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20168291012"></script>
+<script type="text/javascript" src="/scripts/app/modules/app/app.js?t=20168291012"></script>
+<script type="text/javascript" src="/scripts/app/modules/ops/birthday/index.js?t=20168291012"></script>
+
+</head>
+<body>
+    <div style="display: none;" v-show="init" class="container" :class="{'d1':d1(),'d6':d6()}">
+        <nav>
+            <ul>
+                <li @touchstart.stop.prevent="changeNav(i,v,$event)" :class="{'cur':v.select}" v-for="(i,v) in nav">{{v.name}}</li>
+            </ul>
+        </nav>
+        <div align="center" class="banner">
+            <img class="banner" src="/images/app/ops/birthday/include/banner.jpg" >
+            <div class="b">
+                <div class="title">距<span>2周年庆</span>{{timer.status}}</div>
+                <div v-show="timer.cd>=0" class="timer">
+                    <span class="t dd">{{timer.dd}}</span>
+                    <span>天</span>
+                    <span class="t hh">{{timer.hh}}</span>
+                    <span>时</span>
+                    <span class="t mm">{{timer.mm}}</span>
+                    <span>分</span>
+                    <span class="t ss">{{timer.ss}}</span>
+                    <span>秒</span>
+
+                </div>
+            </div>
+        </div>
+        <img src="/images/app/ops/birthday/include/title-a.png" class="title-a link" alt="">
+
+        <ul class="date-tab">
+            <li @touchstart="curTab(0)" :class="{'cur':(d1())}">9.01-9.05</li><li @touchstart="curTab(1)" :class="{'cur':(d6())}">9.06-9.09<img src="/images/app/ops/birthday/include/icon-tab-tip.png" class="tip"> </li>
+        </ul>
+        <div v-if="d1()">
+            <img :src="'/images/app/ops/birthday/include/icon-1.png'" class="icon-1" alt="">
+        </div>
+        <div v-if="d6()">
+            <a :href="checkTab() ? '/m/special/coupon/index.html' : 'javascript:void(0)'">
+                <img :src="'/images/app/ops/birthday/include/d6-1.jpg'" alt=""/>
+            </a>
+            <img :src="'/images/app/ops/birthday/include/d6-2.jpg'" alt=""/>
+            <img :src="'/images/app/ops/birthday/include/d6-icon-a.png'" class="icon-1" alt="">
+        </div>
+
+        <ul  v-if="d6()" class="no-tab-1 zero">
+            <li class="one cur enb cur">
+                <div>
+                    9月6日 0点
+                </div>
+            </li>
+        </ul>
+        <ul v-if="d6()" class="no1 zero">
+            <li @click="goN1(index)" v-for="(index,nw) in zeroView">
+                <img :src="nw.img" class="pro-img" alt="">
+                <div class="pro-info">
+                    <div class="title">{{nw.name}}</div>
+                    <div class="price">{{nw.price}}</div>
+                    <a class="go">GO</a>
+                </div>
+            </li>
+        </ul>
+        <ul v-if="checkTab()" class="no-tab-1">
+
+            <li v-for="(k,n1) in n1Text" @touchstart="changeN1(k)" :class="{'cur':n1.select && checkTab(),'enb':n1.open && checkTab(),'end':n1.timeout}">
+                <div>
+                    {{n1.tt}}<br>{{n1.status}}
+                </div>
+            </li><li @click="tomorrow" :class="tw ? 'cur' : ''" class="one">
+                <div>
+                    明日预告
+                </div>
+            </li>
+        </ul>
+        <ul v-if="checkTab()" class="no1">
+            <li @click="goN1(index)" v-for="(index,nw) in n1View">
+                <img :src="nw.img" class="pro-img" alt="">
+                <div class="pro-info">
+                    <div class="title">{{nw.name}}</div>
+                    <div class="price">{{nw.price}}</div>
+                    <a class="go">GO</a>
+                </div>
+            </li>
+        </ul>
+        <div v-if="d1()">
+            <div class="icon-text">
+                <img :src="'/images/app/ops/birthday/include/icon-text.jpg'">
+            </div>
+            <!--<img :src="'/images/app/ops/birthday/include/icon-2.png'" class="icon-1 pt0">-->
+        </div>
+        <div v-if="d6()">
+            <div class="icon-text">
+                <img :src="'/images/app/ops/birthday/include/d6-icon-text.jpg'">
+            </div>
+            <!--<img :src="'/images/app/ops/birthday/include/d6-icon-3.png'" class="icon-1">-->
+        </div>
+        <!--<a href="/m/special/group/list.html">-->
+            <!--<img :src="'/images/app/ops/birthday/include/banner-c.png'" width="100%">-->
+        <!--</a>-->
+        <!--<ul class="pt">-->
+            <!--<li @click="goGroup(g.id)" v-for="(index,g) in groupon">-->
+                <!--<div class="tip">{{g.num}}人成团</div>-->
+                <!--<img :src="g.img" width="100%">-->
+                <!--<div class="pro-info">-->
+                    <!--<div class="title ov">{{g.name}}</div>-->
+                    <!--<div class="price">拼团价:<b>{{g.price}}</b></div>-->
+                    <!--<s>原价:{{g.origin_price}}</s>-->
+                    <!--<a class="go">GO</a>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <div v-if="d1()">
+            <img :src="'/images/app/ops/birthday/include/icon-3.png'" class="icon-1">
+            <img :src="'/images/app/ops/birthday/include/club.jpg'" width="100%">
+            <img :src="'/images/app/ops/birthday/include/icon-4.png'" class="icon-1">
+            <a :href="checkTab() && '/m/special/coupon/index.html'" class="banner-d">
+                <img :src="'/images/app/ops/birthday/include/banner-d.png'">
+            </a>
+            <div class="hb-text">
+                - 仅限9月1日-9月5日使用<br/>
+                - 每天10/14/18/20/22点每个整点仅发500张
+            </div>
+            <img :src="'/images/app/ops/birthday/include/icon-5.png'" class="icon-1">
+        </div>
+        <div v-if="d6()">
+            <img :src="'/images/app/ops/birthday/include/d6-icon-4.png'" class="icon-1">
+        </div>
+
+
+        <ul v-show="n2Text" class="no-tab-2">
+            <li v-for="(k,n2) in n2Text" class="one" @touchstart="changeN2(n2.key)" :class="{'enb':n2.open,'cur':stN2==n2.key}">
+                <div>
+                    {{getMd(n2.key)}}
+                </div>
+            </li>
+        </ul>
+        <div class="hid">
+            <div v-show="hid.show"  class="hid-mask">
+                <div @click="hidClick" class="hid-btn">
+                    <img src="/images/app/ops/birthday/include/hide-m.jpg" class="hid-img" alt="">
+                    <div class="text">{{hid.text}}</div>
+                    <img :src="hid.btn" class="hid-b" alt="">
+                </div>
+            </div>
+
+            <ul class="no2">
+                <li @click="goN2(index)" v-if="index<14" v-for="(index,nw) in n2View">
+                    <img :src="nw.img" class="pro-img" alt="">
+                    <div class="pro-info">
+                        <div class="title ov3">{{nw.name}}</div>
+                        <div class="price"><b>{{nw.price}}</b>元</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="coupon">
+                <img src="/images/app/ops/birthday/include/icon-coupon.jpg" alt="">
+                <div class="box">
+                    <div class="price"><b>{{selectCoupon.price}}</b>{{selectCoupon.ext}}</div>
+                    <div class="desc">{{selectCoupon.desc}}</div>
+                </div>
+
+                <div class="code">输入公码：<a style="display: initial">{{selectCoupon.code}}</a></div>
+            </div>
+        </div>
+        <a href="http://cn.memebox.com/zgczlh">
+            <img :src="'/images/app/ops/birthday/include/title-lh.jpg'" class="title-lh link" alt="">
+        </a>
+        <div class="bottom">
+            敬请期待更多优惠活动
+        </div>
+    </div>
+
+    <script>
+        require('/modules/ops/birthday/index');
+    </script>
+</body>
+</html>

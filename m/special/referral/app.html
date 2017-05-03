@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球知名化妆品平台- 美美箱MEMEBOX</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=20174271851"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js" >
+</script>
+<script type="text/javascript">
+    var _maq = _maq || [] ;
+</script>
+    <link href="/styles/app/html/special/referral/app.css?t=20174271851" rel="stylesheet"/>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/app/app.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/special/referral/app.js?t=20174281123"></script>
+
+</head>
+<body>
+<div class="box" align="center" v-show="init" style="display: none">
+    <div class="top">
+        <h1>{{data.data.couponAmount}}元礼券赠好友</h1>
+        <h2>自己再获{{data.data.cashAmount}}元</h2>
+        <img src="/images/app/special/referral/include/app-banner.png?t=20174271851" alt="邀请有礼">
+    </div>
+    <div class="rule">
+        <div class="fl">
+            <span>¥{{data.data.cashAmount}}</span>
+        </div>
+        <div class="rule-text">
+            <h3>邀请1人得{{data.data.cashAmount}}元蜜豆</h3>
+            <h4 @tap="ruleF">好友下单，您的蜜豆可使用</h4>
+            <p>&nbsp;&nbsp;( 除拼团预售、新人专享订单外 )</p>
+        </div>
+    </div>
+    <div class="main">
+        <div class="content">
+            <span class="ball1"></span>
+            <span class="ball2"></span>
+            <span class="ball3"></span>
+            <span class="ball4"></span>
+            <div class="top-ball">
+
+            </div>
+            <div class="no-award" v-if="data.code=='0'||data.data.rewardList.length==0">
+            <img src="/images/app/special/referral/include/app-noaward.png?t=20174271851" alt="请登录">
+            <p>居然还没有奖励</p>
+            <p>赶快去邀请好友领奖励吧！</p>
+            </div>
+            <div class="award" v-else>
+                <div class="award-top">
+                    <h4>我获得的奖励</h4>
+                    <p>以后的瓶瓶罐罐都靠闺蜜买单咯</p>
+                </div>
+                <div class="award-list">
+                    <div class="award-title">
+                        <span>已激活</span>
+                        <span class="number">{{data.data.activeCash.toFixed(2)}}</span>
+                        <!--<span>元</span>-->
+                    </div>
+                    <div class="progress-bar">
+                        <span :style='style'></span>
+                    </div>
+                    <div class="award-money">
+                        <span class="fr" @tap="ruleF">{{data.data.recordCash.toFixed(2)}}</span>
+                    </div>
+                    <div class="show-award" :class="!down&&'show-award-default'">
+                        <ul>
+                            <li>
+                                <span class="phone">好友</span>
+                                <span class="status">状态</span>
+                                <span class="reward">我的奖励</span>
+                            </li>
+                            <li v-for="list in  data.data.rewardList">
+                                <span  class="phone gray-6">{{list.phone}}</span>
+                                <span  class="status gray-6">{{list.status}}</span>
+                                <span class="reward gray-6 reward-state">
+                                    <span>
+                                        {{list.reward.slice(0,3)}}
+                                    </span>
+                                    <span>
+                                        {{list.reward.slice(5,list.reward.length).trim()}}
+                                    </span>
+                                </span>
+                                <!--<span  class="w-90 gray-6 orange" v-else>{{list.reward}}</span>-->
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="up-down-container">
+                        <div v-show="data.data.rewardList.length>5" >
+                            <span class="up"  v-if="down"@tap="up">点击收起</span>
+                            <span class="down" v-else  @tap="up">查看更多</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rank">
+            <div class="title">
+                <span class="rank-text">
+                    邀请好友排名
+                </span>
+            </div>
+            <ul align="left">
+                <li v-for="(index,rank) in data.data.rank">
+                    <img class="icon" :src="'/images/app/special/referral/include/app-no'+(index+1)+'.png'" alt="好友排行">
+                    <img class="avatar" :src="rank.avatar" alt="好友头像">
+                    <span class="nickname">{{rank.nickname}}</span>
+                    <div class="fr">
+                        <span>{{rank.amount}}</span>
+                        <span>已入账蜜豆</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="ani-box">
+            <div class="ani" align="left" :style="{display:aniData.aniDisplay}">
+                <img :src="tends.avatar" alt="好友头像">
+                <div class="nickname">
+                    <span>{{tends.nickname}}</span>
+                    <span>发出一个变美的邀请</span>
+                </div>
+                <div class="show-time">
+                    <span>{{aniData.number}}s之前</span>
+                </div>
+            </div>
+        </div>
+        <div class="btn">
+            <a  @tap="appShare" class="share-btn">点击分享</a>
+        </div>
+        <!--<span class="fr" @touchend="ruleF">活动规则&nbsp;></span>-->
+    </div>
+</div>
+<div class="mask" v-show="rule" style="display: none">
+    <div class="mask-bg" @touchend="ruleF"></div>
+    <div class="show-rule">
+        <div class="rule-title">
+            <h4>活动规则</h4>
+            <span @touchend="ruleF"></span>
+        </div>
+        <div class="text">
+            <p v-for="desc in data.data.desc">{{desc}}</p>
+        </div>
+    </div>
+</div>
+<script src="/scripts/app/appsdk/app.js?t=20174271851"></script>
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+
+</body>
+<script>
+    require('/modules/special/referral/app');
+</script>
+
+</html>

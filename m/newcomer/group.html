@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球No.1韩国化妆品平台  - 美美箱Memebox</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱是全球No.1韩国专业化妆品电商平台,每件商品均由美妆专家严格挑选，韩国直邮到您家, 详情登陆美美箱官网, 韩国化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，韩国化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，韩国,韩国化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=201612281824"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="http://pkg-cn1001.memebox.com/static/production/ma.min.js">-->
+    <!--var _maq = _maq || [] ;-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">
+    var _maq = _maq || [] ;
+</script>
+
+    <link href="/styles/app/html/newcomer/group.css?t=2017151529" rel="stylesheet"/>
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=2017110142"></script>
+<script type="text/javascript" src="/scripts/app/modules/app/app.js?t=2017110142"></script>
+<script type="text/javascript" src="/scripts/app/modules/group/group.js?t=2017110142"></script>
+
+</head>
+<body id="app">
+<header class="mui-bar mui-bar-nav memebox-header" style="display: none" v-show="init">
+    <a :href="page+'/group/list.html?activityId='+groupDetail.activityId" class=" mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">拼团详情</h1>
+</header>
+<top-download v-if="!isApp()"></top-download>
+
+<div style="display: none" v-show="init" class="mui-content">
+    <ul class="mui-table-view mui-table-view-chevron">
+        <gp :product="product" :showstockout="false"></gp>
+    </ul>
+    <div class="group">
+        <div class="msg">
+            <div v-show="groupDetail.grouponStatus=='3'" class="text"><span class="pr">{{payCount()}}</span>人组团成功！棒棒哒
+            </div>
+            <div v-show="(groupDetail.grouponStatus=='1'||groupDetail.grouponStatus=='2') && !btnDis()" class="text">还差<span
+                    class="pr">{{groupDetail.maxNum-payCount()}}</span>人,快喊小伙伴来参团吧
+            </div>
+            <div v-show="groupDetail.grouponStatus!='3' && btnDis()" class="text">
+                很遗憾,截止到有效期未能成团
+            </div>
+        </div>
+        <div class="info">
+            <div v-show="groupDetail.grouponStatus=='3'" class="info-panel">成团时间：{{format('yyyy-MM-dd
+                hh:mm:ss',groupDetail.updateTime)}}
+            </div>
+            <div v-show="groupDetail.grouponStatus!='3'&&groupDetail.grouponStatus!='4' && !btnDis()"
+                 class="info-panel">
+                <span>剩余</span>
+                <span class="time-panel">{{cd.day}}</span>
+                <span>天</span>
+                <span class="time-panel">{{cd.hour}}</span>
+                <span>时</span>
+                <span class="time-panel">{{cd.minute}}</span>
+                <span>分</span>
+                <span class="time-panel">{{cd.second}}</span>
+                <span>秒结束</span>
+            </div>
+        </div>
+        <ul class="ps-list">
+
+            <li v-for="(index,g) in groupDetail.grouponerInfo" :class="{'e':isPayOk(g.processState)}"
+                v-show="(isPayOk(g.processState) || isMe(g.customerId))">
+                <div class="head-img">
+                    <img :src=g.imgUrl>
+                </div>
+                <div class="name">
+                    <span v-show="index==0" class="leader">团长</span>
+                    {{g.nickName}}
+                </div>
+                <div class="status">
+                    <template v-if="isPayOk(g.processState)">
+                        已{{index==0 ? '开团' : '参团'}}
+                    </template>
+                    <template v-else>
+                        处理中
+                    </template>
+                </div>
+            </li>
+            <li v-for="g in groupMax">
+                <div class="head-img">
+                    <img src="include/group-head2.png">
+                </div>
+                <div class="m">赶紧呼唤小伙伴来参团吧</div>
+                <!--<div class="m" v-if="groupDetail.grouponStatus=='4'|| groupDetail.grouponStatus=='5'">还差{{groupDetail.maxNum-groupDetail.grouponerInfo.length}}人,未能成团,再接再厉哦</div>-->
+            </li>
+        </ul>
+    </div>
+    <!--拼团玩法-->
+    <div class="group-rule">
+        <p>
+            拼团玩法
+            <a class="ex" href="/m/group/groupExplain.html">
+                查看规则
+            </a>
+        </p>
+        <div>
+            <div class="block cur">
+                <span>支付</span>
+                <span>开团/参团</span>
+            </div>
+            <span class="arrow cur"></span>
+            <div class="block">
+                <span>邀请</span>
+                <span>好友参团</span>
+            </div>
+            <span class="arrow"></span>
+            <div class="block">
+                <span>
+                    拼团成功立即发货
+                </span>
+                <span>
+                    逾期未成团自动退款
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <select-option :product-data="product" v-ref:productData style="display:none"></select-option>
+</div>
+<div v-show="shareMask" class="guide-shadow" style="display: none" align="center">
+    <img v-show="isWeixin()" style="display: none" src="include/arrow.png" alt="" class="arrow">
+    <img class="tick" src="include/payok.png" alt="">
+    <div v-if="getSearch('share') != 'true' " class="share-msg">支付成功</div>
+    <div v-show="groupDetail.currentNum<=1">
+        <div v-show="groupDetail.maxNum-groupDetail.currentNum" class="share-msg">还差<span>{{groupDetail.maxNum-groupDetail.currentNum}}</span>人就能成团啦</div>
+        <div v-if="!isApp()">点击右上角,分享给小伙伴</div>
+        <div>邀请他们一起来参团吧</div>
+    </div>
+
+    <div v-show="groupDetail.currentNum>1">
+        <div v-show="isApp()">
+            <p>别忘了逛逛其它拼团好货哦</p>
+            <p>商品不间断更新</p>
+            <p>叫上小伙伴一起买买买~</p>
+        </div>
+        <div v-show="!isApp()">
+            <p>还没买过瘾？</p>
+            <p>更多5折商品等你来</p>
+            <p>还可实时查看拼团进度/宝贝物流</p>
+        </div>
+    </div>
+    <div class="btns">
+        <div v-show="!isApp()" class="close" @tap="downPHide()">去看看</div>
+        <div class="close" @tap="hideGuide()">关闭</div>
+    </div>
+</div>
+<!--<div v-show="shareMasks && groupDetail.maxNum-groupDetail.currentNum" class="guide-shadow" style="display: none" align="center">-->
+    <!--<img src="include/arrow.png" v-show="isWeixin()" alt="" class="arrow">-->
+    <!--<div v-show="groupDetail.maxNum-groupDetail.currentNum" class="share-msg ss">还差<span>{{groupDetail.maxNum-groupDetail.currentNum}}</span>人就能成团啦</div>-->
+    <!--<div v-if="!isApp()">点击浏览器分享按钮,分享给小伙伴</div>-->
+    <!--<div>邀请他们一起来参团吧</div>-->
+    <!--<div class="close" @tap="hideGuide()">关闭</div>-->
+<!--</div>-->
+<footer v-show="init" class="group-btn">
+    <a class="mui-btn group-w" :href="page+'/group/list.html?activityId='+groupDetail.activityId">更多拼团</a>
+    <a :class="{'dis':btnDis()}" class="mui-btn group-z" @tap="shareF" style="display: none"
+       v-show="yf() && (groupDetail.grouponStatus=='1'||groupDetail.grouponStatus=='2')&&!btnDis()">邀请好友</a>
+    <a :class="{'dis':btnDis()&& groupDetail.productInfo.stockStatus != 1}" class="mui-btn group-z" @tap="showSelectOption" style="display: none"
+       v-show="!yf()&&!btnDis() && (groupDetail.grouponStatus=='1'||groupDetail.grouponStatus=='2')">我要参团</a>
+    <a class="mui-btn group-z" :class="{'dis':groupDetail.productInfo.stockStatus!=1}"  style="display: none" v-show="(groupDetail.grouponStatus!='1'&&groupDetail.grouponStatus!='2')||btnDis()"
+       @tap="againBuy">再拼一单</a>
+</footer>
+
+
+
+<loading v-ref:loading></loading>
+<alert v-ref:alert></alert>
+<script src="/scripts/app/appsdk/app.js?t=2017151529"></script>
+<script>
+    /*  *
+     *          ┏┓　　　┏┓
+     *        ┏┛┻━━━┛┻┓
+     *        ┃　　　　　　　┃ 　
+     *        ┃　　　━　　　┃
+     *        ┃　┳┛　┗┳　┃
+     *        ┃　　　　　　　┃
+     *        ┃　　　┻　　　┃
+     *        ┃　　　　　　　┃
+     *        ┗━┓　　　┏━┛
+     *        　　┃　　　┃神兽保佑
+     *        　　┃　　　┃代码无BUG！
+     *        　　┃　　　┗━━━┓
+     *        　　┃　　　　　　　┣┓
+     *        　　┃　　　　　　　┏┛
+     *        　　┗┓┓┏━┳┓┏┛
+     *        　　　┃┫┫　┃┫┫
+     *        　　　┗┻┛　┗┻┛
+     *　　　
+     */
+    var pageStart=new Date().getTime();
+
+    window.onerror=function (sMsg,sUrl,sLine) {
+        _maq.push(["_trackErrorEvent",{tag : location.href , level :"error" ,code :"jserror",msg :sMsg,line:sLine,sUrl:sUrl}] )
+    }
+</script>
+<script src="/scripts/app/monitor/tingyun.js?t=201612281824"></script>
+<!--<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>-->
+<!-- Google Tag Manager -->
+<!--<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NGHG3H"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>-->
+<!--<script src="http://pkg-cn1001.memebox.com/static/production/ma.min.js"></script>-->
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js"></script>-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+
+
+
+(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-NGHG3H');
+
+ga('create', 'UA-70353868-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+<!-- End Google Tag Manager -->
+
+</body>
+<script>
+    require('/modules/group/group');
+</script>
+
+</html>

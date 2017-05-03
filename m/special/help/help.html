@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title v-text="title || '帮助中心'"></title>
+    
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<title>全球知名化妆品平台- 美美箱MEMEBOX</title>
+<meta name="format-detection" content="telephone=no" />
+<meta name="baidu-site-verification" content="0NcBQMiC0n" />
+<meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+<meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+<link rel="shortcut icon" :href="'/images/app/favicon.png'" type="image/x-icon" />
+<link href="/styles/app/vendor/mui/mui.e.css" rel="stylesheet" />
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/scripts/app/config.js?t=20174271851"></script>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script>
+    ///MicroMessenger/.test(window.navigator.userAgent) &&
+    if(location.host=='cn.m.memebox.com'){
+        location.host='m.cn.memebox.com'
+    }
+</script>
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js">-->
+<!--</script>-->
+<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js" >
+</script>
+<script type="text/javascript">
+    var _maq = _maq || [] ;
+</script>
+    <link rel="stylesheet" href="/styles/app/html/special/help/help.css?t=20174271851">
+
+<script type="text/javascript" src="/scripts/app/modules/vue/lib.js?t=20174281123"></script>
+<script type="text/javascript" src="/scripts/app/modules/special/help/help.js?t=20174281123"></script>
+
+</head>
+<body :class="{isApp: isApp()}">
+	<div class="mui-navbar hide" v-if="!isApp()" :class="{hide:isApp()}">
+        <div class="mui-navbar-inner mui-bar mui-bar-nav mui-navbar-center">
+	        <button type="button" @tap="goBack" class="mui-left  mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+	            <span class="mui-icon mui-icon-left-nav"></span>
+	        </button>
+	        <h1 class="mui-center mui-title" v-text="title || '帮助中心'"></h1>
+	        <a class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right" href="javascript:;" @tap="goHome"></a>
+    	</div>
+    </div>
+    <main class="page-main">
+		<article class="main-article">
+	    	<ul class="mui-table-view mui-table-view-chevron translated" :class="{active: isCreated}">
+	            <li class="mui-table-view-cell list" v-for="(index,item) in list">
+	                <a href="#{{item.hash}}" class="mui-navigate-right" v-text="item.text" @tap='toggleActive(index,item.hash)'></a>
+	            </li>
+	        </ul>
+			<article class="content-panel translated" :class="{translated: !isCreated}" id="some-question">
+	<h3>常见问题</h3>
+	<section class="">
+		<h4>一、购物流程</h4>
+		<ul>
+			<li>
+				登录/注册 → 挑选商品 → 加入购物车 → 确认订单 → 支付订单 → 收货与评价。
+			</li>
+		</ul>
+	</section>
+	<section class="">
+		<h4>二、新用户注册</h4>
+		<ol>
+			<li>首先点击右下角“我哒”，进入登录页面后点击右上角“注册”。</li>
+			<li>请根据提示在信息栏内正确填入注册信息，填写完成后点击下方的“注册”按钮。</li>
+		</ol>
+	</section>
+	<section class="">
+		<h4>三、登录</h4>
+		<ol>
+			<li>点击右下角“我哒”，进入登录页面。</li>
+			<li>在登录页面的信息栏内填入对应信息（注册手机号及密码），点击“登录”按钮进行登录，登录成功后，系统将自动跳转至美美箱首页。</li>
+		</ol>
+	</section>
+	<section class="">
+		<h4>四、忘记密码</h4>
+		<ul>
+			<li>
+				请进入登录页面→点击“忘记密码”跳转到重置密码页面→输入用于登录的手机号，点击“提交”→我们将会发给您重置密码的链接网址。或使用手机号快捷登录。
+			</li>
+		</ul>
+	</section>
+	<section class="">
+		<h4>五、购买须知</h4>
+		<ol>
+			<li>
+				<section>
+					<h5>官网、商品咨询</h5>
+					<ol class="list-lowercase">
+						<li>
+							<label>查看“美美账户”</label>
+							<div>请点击APP右下角『我哒』，您可以根据目录查看需要知道的账户信息。例如：查看订单、查看蜜豆、蜜米等级、优惠券使用情况、修改/添加收货地址等等。</div>
+						</li>
+						<li>
+							<label>网站客服服务时间</label>
+							<div>服务时间为周一至周日：9:00-21:00（遇到法定节假日，服务时间另行安排通知）。</div>
+						</li>
+						<li>
+							<label>如何订阅/取消美美箱发布的活动及优惠信息？</label>
+							<div>请您进入我的账户，点击“订阅邮件”，勾选“订阅申请”，这样就成功订阅了美美箱的活动及优惠信息；反之则取消订阅。</div>
+						</li>
+					</ol>
+				</section>
+				
+			</li>
+			<li>
+				<section>
+					<h5>订单&支付&更改&取消&缺货</h5>
+					<ol class="list-lowercase">
+						<li>
+							<label>订单支付</label>
+							<div>
+								<div>订单确认生成后，请在20分钟内支付，过时系统将自动取消订单；</div>
+								<div>系统自动取消的订单虽支付宝“账单”中显示“等待付款”，若您重新在支付宝中支付钱款，订单无法恢复正常，此时只能联系客服为您办理退款。</div>
+							</div>
+						</li>
+						<li>
+							<label>订单更改</label>
+							<div>
+								<div>购买前请注意，一旦结算完成后商品将不能更换；</div>
+								<div>直邮订单确认生成后，无法对产品、收货地址、姓名、收货电话做任何修改；请仔细填写收货信息，一旦发生错误，往返运费及相关后果需由您自行承担。</div>
+							</div>
+						</li>
+						<li>
+							<label>订单取消</label>
+							<div>
+								<div>当天订购可立即取消订单，需要您在app中点击取消订单办理退款，取消后优惠券不返还、现金券返还；</div>
+								<div>订单发货后将不能取消；优惠券、现金券均不返还。</div>
+							</div>
+						</li>
+						<li>
+							<label>缺货订单</label>
+							<div>
+								<div>如果您的订单中有商品缺货，客服会通过电话、短信通知您，为您处理；</div>
+								<div>若您的电话始终无人接听；或者收到短信未及时与我们联系处理；订单将为您保留3个工作日；</div>
+								<div>超过3个工作日还未处理的订单，系统将自行取消订单，退款将在1-3个工作日内由原路退回。</div>
+							</div>
+						</li>
+						<li>
+							<label>恶意订单</label>
+							<div>
+								<div>本网站产品订购是针对个人顾客进行购买，故若经过核实发现相同ID注册多个帐号或相同ID、收货人姓名、电话、地址相同订购了多张不符合优惠条件的订单，系统将自动取消订单不予以发货；请广大会员理解！</div>
+								<div>若本网站系统发生异常问题，如：造成您反复不断购买，生成多张异常订单，系统将自动取消订单不做另行通知，并在3个工作日将款项由原路退回；若您使用了相关优惠我们也会返还给您。</div>
+							</div>
+						</li>
+					</dl>
+				</section>
+			</li>
+		</ol>
+	</section>
+</article>
+			<article class="content-panel translated" :class="{translated: !isCreated}" id="about-account">
+	<h3>账户相关</h3>
+	<section class="">
+		<h4>一、蜜豆制度</h4>
+		<ol>
+			<li>
+				<section>
+					<h5>蜜豆怎么获得</h5>
+					<div>
+						<span>目前一共有两个途径可获得蜜豆，达到要求后系统将直接发送到“我的美美”中：</span>
+						<ol class="list-lowercase">
+							<li>分享网站给好友，好友注册并下单成功后，您即可获得30元蜜豆；好友下单后7天，该蜜豆即可使用。（活动时间及规则根据网站实际情况）</li>
+							<li>签到：当月累计签到10天即可获得5元蜜豆。（每月通过签到最高只能获得5元蜜豆）</li>
+						</ol>
+					</div>
+				</section>
+			</li>
+			<li>
+				<section>
+					<h5>蜜豆使用期限</h5>
+					<div>
+						<span>蜜豆有效期为1年（自发放日期开始）。</span>
+					</div>
+				</section>
+			</li>
+			<li>
+				<section>
+					<h5>如何使用蜜豆</h5>
+					<div>
+						<span>您在下单时，到达结账页面点击使用蜜豆，根据不同等级，订单可抵扣的蜜豆不同。</span>
+					</div>
+				</section>
+			</li>
+			<li>
+				<section>
+					<h5>如何查询优惠券</h5>
+					<div>
+						<span>您可以点击“我的美美”账户中心，左侧再点击“我的蜜豆、我的优惠券”查询使用情况。</span>
+					</div>
+				</section>
+			</li>
+		</ol>
+	</section>
+	<section class="">
+		<h4>二、优惠券制度</h4>
+		<ol>
+			<li>
+				<section>
+					<h5>优惠券怎么获得？</h5>
+					<div>
+						<ol class="list-lowercase">
+							<li>活动期间，可以通过活动页面领取优惠券；</li>
+							<li>美美箱也会不定期的给你的账户绑定额外的优惠券哦！</li>
+						</ol>
+					</div>
+				</section>
+			</li>
+			<li>
+				<section>
+					<h5>优惠券使用期限及限额</h5>
+					<div>
+						优惠券使用规则都会在活动期间说明，请留意活动页面。
+					</div>
+				</section>
+			</li>
+			<li>
+				<section>
+					<h5>如何使用优惠券</h5>
+					<div>
+						您在下订单时，到达结账页面点击使用优惠券，将获得的券号输入在指定的位置，或点击“使用优惠券”。
+					</div>
+				</section>
+			</li>
+			<li>
+				<section>
+					<h5>如何查询优惠券</h5>
+					<div>
+						您可以点击“我的美美”账户中心，左侧再点击“我的优惠券”查询使用情况。
+					</div>
+				</section>
+			</li>
+		</ol>
+	</section>
+</article>
+			<article class="content-panel translated" :class="{translated: !isCreated}" id="free-shipping">
+	<h3>包邮政策</h3>
+	<div>极速仓购满99元即可包邮；</div>
+	<div>韩国直邮购满249元即可包邮。</div>
+	<div class="mb-14">若未达到包邮金额，系统将自动结算您需要支付的邮资（一般每公斤30元），之后将不再产生其他费用，请您放心购买！</div>
+	<div>注.部分活动产品在特定时间段可直接包邮，以网站标识活动为准。</div>
+</article>
+			<article class="content-panel translated" :class="{translated: !isCreated}" id="about-pay">
+	<h3>支付相关</h3>
+	<ol>
+		<li>
+			<section>
+				<h5>为何要实名身份证验证？</h5>
+				<div>
+					<ul>
+						<li>
+							<div class="mb-14">订单需要海关出关处理，故用户必须实名认证身份证信息，以保证出关正常。</div>
+							（身份证和姓名不匹配不正确的订单，我们会短信通知顾客，3天内不联系我们，我们将为客户取消订单并退款）
+						</li>
+					</ul>
+				</div>
+			</section>
+		</li>
+		<li>
+			<section>
+				<h5>为何未支付的订单被取消</h5>
+				<div>
+					<span>提交订单后20分钟未支付，订单将会自动取消。若有任何疑问，可与客服400-720-9967联系。</span>
+				</div>
+			</section>
+		</li>
+		<li>
+			<section>
+				<h5>购买产品后，可以更换收货地址么？</h5>
+				<div>
+					<ol class="list-lowercase">
+						<li>
+							订单确认生成后，无法对产品、收货地址、姓名、收货电话做任何修改；请仔细填写收货信息，一旦发生错误，往返运费及相关后果由您自行承担；
+						</li>
+						<li>
+							由于您的订单地址不详、地址错误等问题无法正常收货，一切后果由您自行承担；在您购买时请务必准确填写核对收货地址；若由于更换地址而导致的退货，往返运费需您自行承担。
+						</li>
+					</ol>
+				</div>
+			</section>
+		</li>
+	</ol>
+</article>
+			<article class="content-panel translated" :class="{translated: !isCreated}" id="about-transport">
+	<h3>物流相关</h3>
+	<ol>
+		<li>
+			<section>
+				<h5>美美箱订单什么时候发货？大概多长时间可以收到货？</h5>
+				<div>
+					<ol class="list-lowercase">
+						<li>韩国直邮商品：下单后3-5个工作日发货。预计7-14个工作日收货。若遇法定节假日或进出口海关清关，收货时间无法估计。如果急需购买使用的客户请慎重。</li>
+						<li>极速仓商品：下单后16:00前的订单尽量在当日派发，16:00后的订单将于次日派发。预计3-5个工作日收货（偏远地区除外）。</li>
+					</ol>
+				</div>
+			</section>
+		</li>
+		<li>
+			<section>
+				<h5>为什么后下的订单先收到？美美箱按照什么顺序发货的？</h5>
+				<div>
+					<ul>
+						<li>为了在单位时间内以最快的速度处理尽量多订单，美美箱会适当综合订单里配货的情况安排发货顺序，因此可能会出现订单发货和下单顺序不完全一致的情况。我们会尽一切努力为您安排尽早发货。</li>
+					</ul>
+				</div>
+			</section>
+		</li>
+		<li>
+			<section>
+				<h5>订单显示发货，但快递信息为什么没有更新？</h5>
+				<div>
+					<ul>
+						<li>美美箱订单发货后都会有短信告知，收到短信表示商品已经发送给快递公司。但由于直邮配送更新物流会有一定的延迟，请您多多谅解。如有任何问题可以联系官网客服进行查询。</li>
+					</ul>
+				</div>
+			</section>
+		</li>
+		<li>
+			<section>
+				<h5>验货签收说明</h5>
+				<div>
+					<span>请您签收货品时，尽量在快递人员在场时当面检查商品（如果快递人员坚持先签收再验货，可以在签收之后立刻检查）。请注意：</span>
+					<ol class="list-lowercase">
+						<li>务必检查包装箱是否为MEMEBOX美美箱专用包装箱，包装箱上是否有MEMEBOX客户留档信息。</li>
+						<li>快递包装是否有破损、渗漏、缺少等现象。</li>
+					</ol>
+					<div class="mb-14">若出现以上情况，建议您拍照存档，把照片发给我们的在线客服，以便我们对物流快递公司进行追责。</div>
+					<div class="mb-14">
+						请注意：价值500元以上商品不支持无条件退货政策，拆封后如无质量问题不退不换。请您务必在签收时仔细检查货品包装是否完好，因物流原因造成损坏的，请立即联系我们的客服处理	
+					</div>
+				</div>
+			</section>
+		</li>
+		<li>
+			<section>
+				<h5>拒收说明</h5>
+				<div>
+					<span>建议您最好不要选择拒收货品，原因如下：</span>
+					<ol class="list-lowercase">
+						<li>拒收后产生的往返运费较为昂贵，需要由您承担；</li>
+						<li>直邮仓和保税仓的货品在退货过程中容易丢失，如发生包裹丢失、破损等问题，美美箱不承担任何责任；</li>
+						<li>拒收后处理时间较长，韩国发货的货品如果被拒收，需要等到退货到达韩国仓库后再做退款，可能会耽误售后处理。</li>
+					</ol>
+					<div class="mb-14">
+						因此我们建议您尽量选择先签收再联系我们的客服进行退换货。
+					</div>
+				</div>
+			</section>
+		</li>
+		<li>
+			<section>
+				<h5>如果我的货被海关扣了怎么办？会不会还要交其他费用？</h5>
+				<div>
+					<div>根据国家海关的相关规定，在配送过程中是有可能产生关税的，但这种可能性相对较小。关税是由国家海关征收的，具体的交税金建议咨询相关部门。</div>
+					<div>如果商品需要交纳关税，相关海关工作人员会通知您并发送报关通知单，您缴齐关税后即可领取包裹。由此产生的费用请您先垫付；之后将相关费用凭证（一定是对应此张订单的缴费凭证）拍照发给美美在线客服，网站将会通过支付宝退还给您，由此给您带来的不便敬请谅解。</div>
+				</div>
+			</section>
+		</li>
+	</ol>
+</article>
+			<article class="content-panel translated" :class="{translated: !isCreated}" id="about-change">
+	<h3>退换政策</h3>
+	<section class="">
+		<h4>一、退换货政策</h4>
+		<ol>
+			<li>
+				<section>
+					<h5>退换货申请标准</h5>
+					<ol class="list-lowercase">
+						<li>
+							<label>美美箱承诺收到商品后，7天无条件“退货”“换货”，以下情况除外：</label>
+							<ul>
+								<li>&nbsp;·&nbsp;买家自身原因造成商品破损；</li>
+								<li>&nbsp;·&nbsp;买家已使用产品（无质量问题），并影响到二次销售；</li>
+								<li>&nbsp;·&nbsp;价值500元以上商品不支持无条件退货政策；</li>
+							</ul>
+						</li>
+						<li>
+							<label>因主观原因要求的退货</label>
+							<div>因主观原因（不喜欢、与想象不同）要求的退货，须用户自行承担往返运费。美美箱收到您的货品后检查未开封、未使用，不影响二次销售的情况下，将办理退换货。若收到货检查产品影响二次销售的情况下产品将折至5-8折进行退款；</div>
+						</li>
+					</ol>
+				</section>
+			</li>
+		</ol>
+	</section>
+	<section class="">
+		<h4>二、退换货流程</h4>
+		<ol>
+			<li>
+				<label>申请退货，准备照片</label>
+				<div>在App上点击确认收货后，点击申请退货按钮，请选择退货理由，并拍三张不同角度且能反应产品问题的照片，点击提交。</div>
+			</li>
+			<li>
+				<label>提交申请，待审核</label>
+				<div>提交申请后客服将在48小时内审核您的退货申请，如提供照片真实有效，客服将确认您的退货申请。</div>
+			</li>
+			<li>
+				<label>退/换货处理</label>
+				<div>如果通过审核，请在7个工作日内邮寄商品到退货地址，在退货订单中上传寄回物流单号（退货不支持到付件，请使用普通快递寄回退件），待我司收到退件后将在3个工作日内为您办理退款。</div>
+			</li>
+			<li>
+				<label>退款处理</label>
+				<div>
+					收到货后，将按照原支付方式退回款项，一般1-3个工作日将为您处理完成；商品运费部分需要您提供支付宝账号，则额外办理，一般退款到账时间为1-7个工作日。
+				</div>
+			</li>
+			<li>
+				<label>处理完成</label>
+			</li>
+		</ol>
+	</section>
+	<section class="">
+		<h4>三、特殊商品退换货说明</h4>
+		<ol>
+			<li>对于高价值商品、食品类商品，在发出之前均已经通过专业人员仔细检查，售出后无质量问题不支持退货。请您一定在快递送达时当面验货再进行签收，签收完毕则认为无质量问题。</li>
+			<li>针对促销活动的特价商品和礼盒商品，一般网站会公告您购买后无质量问题不受理退换货。请您再购买时慎重考虑，谢谢！</li>
+		</ol>
+	</section>
+	<section class="">
+		<h4>四、什么时候可以退款？多久退款到账？</h4>
+		<ol>
+			<li>
+				整单退款：一般到账时间为1-3个工作日；
+			</li>
+			<li>
+				部分退款：一般到账时间为1-5个工作日。
+			</li>
+		</ol>
+	</section>
+</article>
+		</article>
+    </main>
+
+    <script>
+    /*  *
+     *          ┏┓　　　┏┓
+     *        ┏┛┻━━━┛┻┓
+     *        ┃　　　　　　　┃ 　
+     *        ┃　　　━　　　┃
+     *        ┃　┳┛　┗┳　┃
+     *        ┃　　　　　　　┃
+     *        ┃　　　┻　　　┃
+     *        ┃　　　　　　　┃
+     *        ┗━┓　　　┏━┛
+     *        　　┃　　　┃神兽保佑
+     *        　　┃　　　┃代码无BUG！
+     *        　　┃　　　┗━━━┓
+     *        　　┃　　　　　　　┣┓
+     *        　　┃　　　　　　　┏┛
+     *        　　┗┓┓┏━┳┓┏┛
+     *        　　　┃┫┫　┃┫┫
+     *        　　　┗┻┛　┗┻┛
+     *　　　
+     */
+    var pageStart=new Date().getTime();
+
+    window.onerror=function (sMsg,sUrl,sLine) {
+        _maq.push(["_trackErrorEvent",{tag : location.href , level :"error" ,code :"30500",msg :JSON.stringify({msg:sMsg,line:sLine,sUrl:sUrl})}] )
+    }
+</script>
+<script src="/scripts/app/monitor/tingyun.js?t=20174271851"></script>
+<!--<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>-->
+<!-- Google Tag Manager -->
+<!--<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NGHG3H"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>-->
+<!--<script src="http://pkg-cn1001.memebox.com/static/production/ma.min.js"></script>-->
+<!--<script src="https://secure.cn.memebox.com/pa/prod/ma.min.js"></script>-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+
+
+
+(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-NGHG3H');
+
+ga('create', 'UA-70353868-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+<!-- End Google Tag Manager -->
+
+</body>
+<script>
+    require('/modules/special/help/help');
+</script>
+</html>
